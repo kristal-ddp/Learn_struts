@@ -57,27 +57,27 @@ public class MemberAction extends DispatchAction{
 		
 		if(mode.equals("insert")) {//join
 			
-			if(dao.getReadData("member.getUserId", memberForm)==null) {
+			if(dao.getReadData("member.insert", memberForm)==null) {
 				
-				dao.insertData("member.insert", memberForm);
-				
-				dao = null;
-				
+				dao.insertData("member.insert", memberForm);				
 			}else {
 				
 				request.setAttribute("message", "동일한 아이디가 존재합니다.");
 				request.setAttribute("mode", "insert");
 				
 				return mapping.findForward("join");
-				
 			}
 		}else {//update
-			
 			dao.updateData("member.update", memberForm);
-			
 		}
 		
-		return mapping.findForward("join_ok");
+		dao = null;
+		
+		ActionForward af = new ActionForward();
+		af.setRedirect(true);
+		af.setPath("/member.do?method=myPage");
+		
+		return af;
 	}
 	
 	public ActionForward login(ActionMapping mapping, ActionForm form,

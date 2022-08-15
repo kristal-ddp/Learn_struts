@@ -6,7 +6,7 @@
 <struts-config>
 
 	<form-beans>
-		<form-bean name="memberForm" type="com.member.memberForm"/>
+		<form-bean name="memberForm" type="com.member.MemberForm"/>
 	</form-beans>
 
 	<action-mappings>

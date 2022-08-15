@@ -69,15 +69,13 @@
 			f.userEmail.focus();
 			return;
 		} */
-		f.action = "<%=cp%>/shop/member/join_ok.do"
+		f.action = "<%=cp%>/member.do?method=join_ok"
 		f.submit();
-		
-		
 		
 	}
 	
 	
-function checkid(){
+<%-- function checkid(){
 		
 		var f = document.myForm;
 		
@@ -94,7 +92,7 @@ function idCheck(){
 	
 	
 	
-}
+} --%>
 
 /* function idCheck2(){
 	
@@ -287,23 +285,50 @@ function idCheck(){
 	                  </div>
 	                </div>
 	            </div>
+	    
+	    <!-- form안에 넣어줘야 JOIN버튼을 눌렀을 때 가지고 감 -->
+        <input type="hidden" name="mode" value="${mode }"/>
+		<c:if test="${mode=='insert' }">
+			<div align="center">
+				<div style="float: left; padding-left: 370px; padding-right: 10px;">	
+					<button class="add_button" type="button" style="width: 170px;" onclick="javascript:history.back();">
+						<a style=" font-size: 8px; color: #484848;">BACK</a>
+					</button>
+				</div>
+				
+				<div style="float: left;">
+					<button class="add_button" type="button" style="width: 170px;" onclick="sendIt();">
+						<a style=" font-size: 8px; color: #484848;">JOIN</a>
+					</button>	
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${mode=='update' }">
+			<button
+			style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;"
+			type="button" onclick="javascript:history.back();"
+			onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
+			<a style="font-size: 8px; color: #484848;">BACK</a>
+			</button>
+	
+			<button
+				style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;"
+				type="button" onclick="sendIt();"
+				onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
+				<a style="font-size: 8px; color: #484848;">완료</a>
+			</button>
+			
+			<button
+				style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;"
+				type="button" onclick="javascript:location.href='<%=cp%>/shop/member/delete.do';"
+				onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
+				<a style="font-size: 8px; color: #484848;">회원탈퇴</a>
+			</button>
+		</c:if>
+	            
 		</form>
 		
 		
-		
-		<div align="center">
-			<div style="float: left; padding-left: 370px; padding-right: 10px;">	
-				<button class="add_button" type="button" style="width: 170px;" onclick="javascript:history.back();">
-					<a style=" font-size: 8px; color: #484848;">BACK</a>
-				</button>
-			</div>
-			
-			<div style="float: left;">
-				<button class="add_button" type="button" style="width: 170px;" onclick="sendIt();">
-					<a style=" font-size: 8px; color: #484848;">JOIN</a>
-				</button>	
-			</div>
-		</div>
 	</div>
 </div>
    
