@@ -17,7 +17,7 @@
 	function sendIt() {
 		var f = document.searchForm;
 		
-		f.action = "<%=cp %>/shop/boards/qna.do";
+		f.action = "/mini/boards.do?method=list";
 		f.submit();
 	}
 
@@ -45,35 +45,27 @@
 						<th scope="col">SUBJECT</th>
 						<th scope="col">ID</th>
 						<th scope="col">DATE</th>
-						<th scope="col">COMMENT</th>
+						<th scope="col">HITS</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:if test="">
+					<c:if test="${empty list }">
 						<tr>
 							<td colspan="5" class="empty">등록된 글이 없습니다.</td>
 						</tr>
 					</c:if>
-					<c:forEach var="dto" items="${lists }">
+					<c:forEach var="dto" items="${list }">
 						<tr>
 							<!-- NO -->
 							<td>${dto.boardNum }</td>
 							<!-- SUBJECT -->
-							<td>
-							 <a href="${viewUrl }&boardNum=${dto.boardNum}">${dto.subject }</a>
-							<%-- <a href="${viewUrl }&boardNum=${dto.boardNum}&productNum=${dto.productNum }">${dto.subject }</a> --%>
-							</td>
+							<td><a href="${viewUrl }&boardNum=${dto.boardNum}">${dto.subject }</a></td>
 							<!-- ID -->
 							<td>${dto.userId }</td>
+							<!-- DATE -->
 							<td>${dto.postDate }</td>
-							<td>
-								<c:if test="${empty dto.commentsDTO }">
-									답변 예정
-								</c:if>
-								<c:if test="${!empty dto.commentsDTO }">
-									답변 완료
-								</c:if>
-							</td>
+							<!-- HITS -->
+							<td>${dto.hits }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -82,7 +74,7 @@
 			<!-- paging -->
 			<div id="paging">
 				<p>
-					<c:if test="${dataCount!=0 }">${pageIndexList }</c:if>
+					<c:if test="${totalDataCount!=0 }">${pageIndexList }</c:if>
 				</p>
 			</div>
 			
@@ -96,7 +88,6 @@
 									<option value="subject">SUBJECT</option>
 									<option value="userId">ID</option>
 									<option value="content">CONTENT</option>
-									<option value="productNum">PRODUCTNUM</option>
 								</select>
 								<input type="text" name="searchValue" class="textField">
 								<input type="button" value="SEARCH" class="button" onclick="sendIt();"/>
@@ -107,8 +98,7 @@
 			</div>
 			
 			<div class="elementRight" style="float: right;">
-				<a href="<%=cp %>/shop/boards/qnaWrite.do"
-				class="element">WRITE</a>
+				<a href="<%=cp %>/boards.do?method=write" class="element">WRITE</a>
 			</div>
 		</div>
 	</div>

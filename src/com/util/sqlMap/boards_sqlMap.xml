@@ -2,6 +2,57 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="boards">
+	<sql id="column">
+		BOARDNUM, USERID, SUBJECT, CONTENT, POSTDATE, HITS
+	</sql>
+	
+	<sql id="input-column">
+		#boardNum#, #userId#, #subject#, #content#, SYSDATE, 0
+	</sql>
 
+	<select id="maxNum" resultClass="int">
+		SELECT NVL(MAX(BOARDNUM), 0) FROM BOARDS
+	</select>
+
+	<select id="readData" resultClass="com.boards.BoardsForm" parameterClass="int">
+		SELECT <include refid="column"/>
+			FROM BOARDS
+			WHERE BOARDNUM = #boardNum#
+	</select>
+
+	<insert id="insertData" parameterClass="com.boards.BoardsForm">
+		INSERT INTO BOARDS(<include refid="column"/>)
+			VALUES(<include refid="input-column"/>)
+	</insert>
+	
+	<update id="updateData" parameterClass="com.boards.BoardsForm">
+		UPDATE BOARDS SET SUBJECT = #subject#, CONTENT = #content#
+			WHERE BOARDNUM = #boardNum#
+	</update>
+
+	<update id="hitCount" parameterClass="int">
+		UPDATE BOARDS SET HITS = HITS + 1
+			WHERE BOARDNUM = #boardNum#
+	</update>
+
+	<delete id="deleteData" parameterClass="int">
+		DELETE BOARDS WHERE BOARDNUM = #boardNum#
+	</delete>
+
+	<select id="getList" resultClass="com.boards.BoardsForm" parameterClass="map">
+		SELECT * FROM (
+			SELECT ROWNUM AS RNUM, DATA.* FROM (
+				SELECT <include refid="column"/>
+					FROM BOARDS
+					WHERE $searchKey$ LIKE '%' || #searchValue# || '%'
+					ORDER BY BOARDNUM DESC) DATA)
+			WHERE RNUM BETWEEN #start# AND #end#
+	</select>
+	
+	<select id="dataCount" resultClass="int" parameterClass="map">
+		SELECT COUNT(*)
+			FROM BOARDS
+			WHERE $searchKey$ LIKE '%' || #searchValue# || '%'
+	</select>
 
 </sqlMap>

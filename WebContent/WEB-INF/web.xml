@@ -33,7 +33,7 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
 			<param-name>config</param-name>
 			<param-value>
 				/WEB-INF/struts-config_member.xml,
-				/WEB-INF/struts-config_board.xml
+				/WEB-INF/struts-config_boards.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>2</load-on-startup>

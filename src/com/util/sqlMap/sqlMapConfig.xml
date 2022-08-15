@@ -20,6 +20,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
 		</dataSource>	
 	</transactionManager>
 	
-	<sqlMap resource="com/util/sqlMap/board_sqlMap.xml"/>
+	<sqlMap resource="com/util/sqlMap/member_sqlMap.xml"/>
+	<sqlMap resource="com/util/sqlMap/boards_sqlMap.xml"/>
 
 </sqlMapConfig>
