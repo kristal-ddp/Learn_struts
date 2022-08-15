@@ -12,16 +12,7 @@
 
 <link rel="stylesheet" type="text/css"href="<%=cp%>/boards/css/boardsStyle.css" />
 <link rel="stylesheet" type="text/css" href="<%=cp %>/boards/css/viewStyle.css"/>
-<script type="text/javascript">
 
-	function sendIt() {
-		var f = document.searchForm;
-		
-		f.action = "<%=cp %>/shop/boards/noticeView.do";
-		f.submit();
-	}
-
-</script>
 </head>
 <body>
 	<div id="content" align="center">
@@ -78,14 +69,12 @@
 				</div>
 				<div class="button">
 					<div class="elementLeft">
-							<a href="<%=cp %>/shop/boards/notice.do">LIST</a>
+						<a href="${listUrl }">LIST</a>
 					</div>
 					<c:if test="${dto.userId == userId }">
 						<div class="elementRight">
-							<a href="<%=cp %>/shop/boards/noticeUpdate.do?boardNum=${dto.boardNum }&${params }';"
-							class="element">EDIT</a>
-							<a href="<%=cp %>/shop/boards/noticeDelete_ok.do?boardNum=${dto.boardNum }&${params }';"
-							class="element">DELETE</a>
+							<a href="<%=cp %>/boards.do?method=write&mode=update${paramView }" class="element">EDIT</a>
+							<a href="<%=cp %>/boards.do?method=boards_ok&mode=delete${paramView }" class="element">DELETE</a>
 						</div>
 					</c:if>
 				</div>

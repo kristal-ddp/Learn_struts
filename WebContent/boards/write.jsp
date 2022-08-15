@@ -13,7 +13,6 @@
 <link rel="stylesheet" type="text/css"href="<%=cp%>/boards/css/boardsStyle.css" />
 <link rel="stylesheet" type="text/css"href="<%=cp%>/boards/css/writeStyle.css" />
 
-<script type="text/javascript" src="<%=cp%>/boards/js/util.js"></script>
 <script type="text/javascript">
 
 	function sendIt(){
@@ -38,7 +37,7 @@
 		}
 		f.content.value = str;
 		
-		f.action = "<%=cp%>/shop/boards/noticeWrite_ok.do";
+		f.action = "/mini/boards.do?method=boards_ok";
 		f.submit();
 		
 	}
@@ -56,7 +55,7 @@
 				</div>
 				<div class="box row" style="margin: 0px;">
 					<div class="box label"><label for="userId">ID</label></div>
-					<div class="box text">${userId }</div>
+					<div class="box text">${dto.userId }</div>
 				</div>
 				<div class="box row">
 					<label for="userId">CONTENT</label><br/>
@@ -65,15 +64,28 @@
 					</div>
 				</div>
 				<div class="box row" align="center">
-					<div style="border: 1px solid; width: 50px; padding: 5px; float: left; margin-left: 30px;">
-						<a href="<%=cp %>/shop/boards/notice.do">목록</a>
-					</div>
-					<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 30px;">
-						<a href="<%=cp %>/shop/boards/notice.do">취소</a>
-					</div>
-					<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 10px;">
-						<a href="javascript:sendIt();">등록</a>
-					</div>
+					<!-- hidden -->
+					<input type="hidden" name="num" value="${dto.boardNum }">
+					<input type="hidden" name="pageNum" value="${pageNum }">
+					<input type="hidden" name="mode" value="${mode }">
+					<!-- write -->
+					<c:if test="${mode == 'insert' }">
+						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 30px;">
+							<a href="${refererUrl }">CANCEL</a>
+						</div>
+						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 10px;">
+							<a href="javascript:sendIt();">REGISTER</a>
+						</div>
+					</c:if>
+					<!-- update -->
+					<c:if test="${mode == 'update' }">
+						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 30px;">
+							<a href="${refererUrl }">CANCEL</a>
+						</div>
+						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 10px;">
+							<a href="javascript:sendIt();">REGISTER</a>
+						</div>
+					</c:if>
 				</div>
 			</div>
 		</form>
