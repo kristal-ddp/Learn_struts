@@ -1,0 +1,269 @@
+@charset "EUC-KR";
+
+body {
+	max-width: 1561px;
+    margin: 0 auto;
+    padding-left: 11px;
+    padding-right: 11px;
+    font: 8px 'S-CoreDream-3Light','NeueHaasDisplay','Roboto','Noto Sans KR','Helvetica','Malgun Gothic',sans-serif;
+    color: #555;
+    letter-spacing: 0.6px;
+    background: #fff;
+}
+
+
+b {
+    text-decoration: none;
+    color: #484848;
+    font-size: 8pt;
+}
+
+
+
+#content {
+   width: 1000px; 
+   
+}
+
+#cartList {
+   width: 1000px;
+}
+
+#cartList td {
+   height: 100px;
+   padding: 10px 0px 10px 0px;
+}
+
+#paymentBox{
+   display: inline-block;
+   padding-right: 20px;
+   
+}
+
+#paymentBox div {
+   display: inline-block;
+   margin: 5px;
+   width: 100px;
+}
+
+
+#userId{
+	font: 9pt 'S-CoreDream-3Light','NeueHaasDisplay','Roboto','Noto Sans KR','Helvetica','Malgun Gothic',sans-serif;
+	display: inline-block;
+    width: 100px;
+    border: none;
+    float: left;
+    outline: none;
+    margin-left: 30px;
+}
+
+#userPwd{
+	display: inline-block;
+   /*  width: 100px; */
+    font: 9pt 'S-CoreDream-3Light','NeueHaasDisplay','Roboto','Noto Sans KR','Helvetica','Malgun Gothic',sans-serif;
+    border: none;
+    float: left;
+    outline: none;
+    margin-left: 30px;
+	
+}
+
+
+#userName {
+	
+	display: inline-block;
+    width: 300px;
+    font-size: 13px;
+    border: none;
+    float: left;
+    outline: none;
+    
+    
+
+
+
+	
+}
+
+#userGender{
+	display: inline-block;
+    width: 300px;
+    font-size: 13px;
+    border: none;
+    float: left;
+    outline: none;
+}
+#userGender{
+	display: inline-block;
+    width: 300px;
+    font-size: 13px;
+    border: none;
+    float: left;
+    outline: none;
+}
+#userBirth{
+	display: inline-block;
+    width: 300px;
+    font-size: 13px;
+    border: none;
+    float: left;
+    outline: none;
+}
+#userAddress{
+	display: inline-block;
+    width: 100px;
+    font-size: 13px;
+    border: none;
+    float: ;
+    outline: none;
+}
+#userAddr{
+	display: inline-block;
+    width: 200px;
+    font-size: 13px;
+    border: none;
+    float: left;
+    outline: none;
+}
+#userTel{
+	display: inline-block;
+    width: 150px;
+    font-size: 13px;
+    border: none;
+    float: left;
+    outline: none;
+}
+#userEmail{
+	display: inline-block;
+    width: 150px;
+    font-size: 13px;
+    border: none;
+    float: left;
+    outline: none;
+}
+
+#sample6_address{
+	display: inline-block;
+    width: 220px;
+    font-size: 13px;
+    border: none;
+    float: left;
+    outline: none;
+}
+#sample6_detailAddress{
+	display: inline-block;
+    width: 200px;
+    font-size: 13px;
+    border: none;
+    float: left;
+    outline: none;
+}
+#sample6_extraAddress{
+	display: inline-block;
+    width: 200px;
+    font-size: 13px;
+    border: none;
+    float: left;
+    outline: none;
+}
+td {
+   width: 150px;
+   
+}
+
+
+
+label span {
+}
+
+
+
+
+.update.input {
+   width: 200px;
+   vertical-align: middle;
+   font: 8px 'S-CoreDream-3Light','NeueHaasDisplay','Roboto','Noto Sans KR','Helvetica','Malgun Gothic',sans-serif;
+   height: 20px;
+   border-top: 1px solid #DBDBDB; 
+   border-bottom: 1px solid #DBDBDB; 
+   border-left:1px solid #DBDBDB; 
+   border-right: 1px solid #DBDBDB;"
+}
+
+.box.op {
+   width: 100px;
+   vertical-align: middle;
+}
+
+
+.box.option {
+   height:30px;
+   width: 80px;
+   vertical-align: middle;
+   border: none;
+   float: left;
+   font-size: 15px;
+}
+
+
+
+
+input {
+   display: inline-block;
+   width: 300px;
+   font-size: 9px;
+   border: none;
+   float: left;
+   outline: none;
+}
+
+input.input-2 {
+   width: 85px;
+   vertical-align: middle;
+   padding-right: 20px;
+}
+
+.input-2.right {
+   float: right;
+}
+
+input::-webkit-input-placeholder {
+	text-decoration: none;
+	color: #484848;
+	font-size: 8pt;
+	text-align: left;
+}
+
+
+
+
+.botton {
+cursor: pointer;
+    margin-top: 10px;
+    border: 1px solid rgb(189, 189, 189);
+    background-color: white;
+    width: 200px;
+    line-height: 48px;
+}
+.box.botton {
+   width: 300px;
+   height: 64px;
+   vertical-align: middle;
+   background-color: black;
+}
+.cateBtn{
+        width: 100px;
+        height: 50px;
+        margin: 10px;
+    }
+    #cateBtn{
+        text-align: center; 
+    }
+    button.on {
+        color: white;
+        background-color: ;
+    }
+    
+    
+    
+    
