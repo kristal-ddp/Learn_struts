@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+.boardList {
+    margin: 20px auto 0;
+     padding: 0 150px 0 150px; 
+}
+
+.boardTitle {
+    font-weight: 700;
+    font: 15px'S-CoreDream-3Light','NeueHaasDisplay','Roboto','Noto Sans KR','Helvetica','Malgun Gothic',sans-serif;
+	color: #555;
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-top: 1px solid;
+	border-bottom: 1px solid;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-color: #d7d5d5;
+    text-align: center;
+    color: #555;
+}
+
+thead {
+	border-bottom: 1px solid;
+	border-color: #d7d5d5;
+}
+
+tr {
+	margin: 10pt 0pt 10pt;
+	height: 27pt;
+}
+
+a {
+	font: 9pt;
+	color: #555;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+#sub {
+	float: left;
+}
+
+.search {
+	width: 100%;
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+fieldset {
+	border: none;
+	border-bottom: 1px solid #ddd;
+}
+
+.selectField {
+	border: none;
+	outline: none;
+	color: #555;
+    font-size: 9px;
+}
+
+.textField {
+	border: none;
+	outline: none;
+	color: #555;
+    font-size: 9px;
+}
+
+.button {
+	border: none;
+	outline: none;
+	background-color: #fff;
+	color: #555;
+    font-size: 9px;
+}

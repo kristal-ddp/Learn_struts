@@ -1,0 +1,114 @@
+@charset "EUC-KR";
+
+#content {
+	width: 1000px; 
+	
+}
+
+#cartList {
+	width: 1000px;
+}
+
+#cartList td {
+	height: 100px;
+	padding: 10px 0px 10px 0px;
+}
+
+#paymentBox{
+	display: inline-block;
+	padding-right: 20px;
+	
+}
+
+#paymentBox div {
+	display: inline-block;
+	margin: 5px;
+	width: 100px;
+}
+
+tr {
+	border-bottom: 1px solid #AAAAAA;
+}
+
+td {
+	width: 150px;
+}
+
+.box.label {
+	width: 80px;
+	vertical-align: middle;
+}
+
+label span {
+	
+}
+
+
+.box.row {
+	margin-top: 10px;
+	display: inline-block;
+	width: 800px;
+	border-bottom: 1px solid #DBDBDB;
+}
+
+.box.row.payment {
+	margin-top: 10px;
+	display: inline-block;
+	width: 300px; height : 100px;
+	border-bottom: 1px solid #DBDBDB;
+}
+
+.box.row.payment div {
+	display: inline-block;
+	margin: 5px;
+	width: 80px;
+}
+
+td {
+	width: 150px;
+	
+}
+
+.box.input {
+	width: 350px;
+	vertical-align: middle;
+}
+
+.input input {
+	display: inline-block;
+	width: 344px;
+	border: 1px solid #DDDDDD;
+	float: left;
+	outline: none;
+}
+
+.input textarea {
+	display: inline-block;
+	width: 780px;
+	height: 500px;
+	border: 1px solid #DDDDDD;
+	float: left;
+	outline: none;
+	resize: none;
+}
+
+.box.text {
+	width: 350px;
+	vertical-align: middle;
+}
+
+input.input-2 {
+	width: 120px;
+	vertical-align: middle;
+	padding-right: 30px;
+}
+
+.input-2.button {
+	padding: 2px 5px 2px 5px;
+	float: right;
+	background-color: #FFFFFF;
+	border: 1px solid #666666;
+}
+
+
+
