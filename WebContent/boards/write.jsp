@@ -65,7 +65,8 @@
 				</div>
 				<div class="box row" align="center">
 					<!-- hidden -->
-					<input type="hidden" name="num" value="${dto.boardNum }">
+					<input type="hidden" name="boardNum" value="${dto.boardNum }">
+					<input type="hidden" name="searchParam" value="${searchParam }">
 					<input type="hidden" name="pageNum" value="${pageNum }">
 					<input type="hidden" name="mode" value="${mode }">
 					<!-- write -->
