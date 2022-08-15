@@ -68,6 +68,7 @@
 					</table>
 				</div>
 				<div class="button">
+					<input type="hidden" name="searchParam" value="${searchParam }">
 					<div class="elementLeft">
 						<a href="${listUrl }">LIST</a>
 					</div>
