@@ -1,0 +1,255 @@
+@charset "UTF-8";
+
+.button{
+	height: 70px;
+	margin-top: 10px;
+}
+
+.search a{
+	text-decoration: none;
+	color: #484848;
+	font-size: 8px;
+}
+
+.loginForm{
+	/* margin-top: 30px; */
+}
+
+#left_area{
+	width: 350px;
+}
+
+.box.row {
+   position: relative;
+   display: block;
+   box-sizing: border-box;
+   color: #484848;
+   border: none;
+   border-bottom: 1px solid #ddd;
+   margin: 10px;
+}
+
+/* .box {
+   display: inline-block;
+   padding: 10px;
+   width: 500px;
+} */
+
+.box.label {	
+	width: 100px;
+    text-align: left;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    vertical-align: middle;
+}
+
+.box.input {
+   /* height: 25px; */
+   width: 60%;
+   text-align: left;
+   display: inline-block;
+   vertical-align: middle;
+}
+
+.update_area{
+	width: 100%;
+}
+
+/* terms.jsp */
+.terms_bx_list {
+    margin-top: 4px;
+    float: left;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: none;
+}
+
+li{
+	margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: none;
+}
+
+.terms_bx {
+    display: block;
+    padding-top: 20px;
+}
+
+.chk{
+	vertical-align: middle;
+}
+
+.input_chk {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+}
+
+.input_chk label {
+    position: relative;
+    /* display: block; */
+    width: 100%;
+    padding-left: 15px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 21px;
+    cursor: pointer;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.terms_box {
+	vertical-align: middle;
+    position: relative;
+    overflow: auto;
+    height: 110px;
+    margin-top: 8px;
+    padding: 12px;
+    border: 1px solid #dadada;
+    background: #fff;
+    box-sizing: border-box;
+    scrollbar-base-color: #d9d9d9;
+    scrollbar-arrow-color: #8e8e8e;
+    scrollbar-3dlight-color: #d9d9d9;
+    scrollbar-darkshadow-color: #d9d9d9;
+    scrollbar-face-color: #d9d9d9;
+    scrollbar-highlight-color: #d9d9d9;
+    scrollbar-shadow-color: #d9d9d9;
+    scrollbar-track-color: #f2f2f2;
+    -webkit-overflow-scrolling: touch;
+}
+
+.article:first-child {
+    margin-top: 0;
+}
+
+.terms_box .article {
+    font-size: 12px;
+    line-height: 16px;
+    color: #333;
+}
+
+.article {
+    margin-top: 15px;
+    font-size: 12px;
+    line-height: 16px;
+    color: #666;
+}
+
+.article .article__title {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    padding-bottom: 8px;
+    color: #333;
+}
+
+.selectAgree{
+	padding-top: 30px;
+}
+
+
+
+/* join */
+.join_wrap{
+	width: 400px;
+}
+
+.add_button {
+    /* text-align: center;
+    width: 100px;
+    box-sizing: border-box;
+    height: 30px;
+    line-height: 28px;
+    background-color: #fff;
+    font-size: 13px;
+    vertical-align: middle;
+    padding: 0;
+    font-weight: 400;
+    border: 1px solid #000;
+    margin-bottom: 10px;
+    display: block;
+    float: left; */
+    border: 1px solid rgb(189, 189, 189);
+    background-color: white;
+    line-height: 48px;
+    font-size: 8pt cursor: pointer;
+    margin-top: 10px;
+    border: 1px solid rgb(189, 189, 189);
+    background-color: white;
+    width: 200px;
+    line-height: 48px;
+}
+
+.add_button1{
+	
+	border: 1px solid rgb(189, 189, 189);
+    background-color: white;
+    line-height: 48px;
+    font-size: 8pt cursor: pointer;
+    margin-top: 10px;
+    border: 1px solid rgb(189, 189, 189);
+    background-color: white;
+    width: 200px;
+    line-height: 48px;
+    
+    float: center;
+	
+	
+	
+}
+
+
+.joinTitle {
+    font-weight: 700;
+    font: 13px'S-CoreDream-3Light','NeueHaasDisplay','Roboto','Noto Sans KR','Helvetica','Malgun Gothic',sans-serif;
+    color: #555;
+}
+
+.joinLabel{
+	width: 100px;
+	text-align: left;
+	display: inline-block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	vertical-align: middle;
+}
+
+.inputStyle{
+	font: 9pt;
+	font-style: italic;
+	display: inline-block;
+    width: 100px;
+    border: none;
+    float: left;
+    outline: none;
+}
+
+.join_button{
+	border: black;
+	width: 100px;
+	float: left;
+	/* margin-left: 200px; */
+}
+
+/* search */
+.findButton{
+	height: 70px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.findResult{
+	width: 300px;
+}
+
+.btn{
+	border: 0;
+	outline: 0;
+}

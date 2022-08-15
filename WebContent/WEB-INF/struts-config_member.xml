@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="memberForm" type="com.member.memberForm"/>
+	</form-beans>
+
+	<action-mappings>
+		<action path="/member" type="com.member.MemberAction" name="memberForm"
+		scope="request" parameter="method">
+			<forward name="terms" path="/member/terms.jsp"></forward>
+			<forward name="join" path="/member/join.jsp"></forward>
+			<forward name="login" path="/member/login.jsp"></forward>
+			<forward name="find" path="/member/find.jsp"></forward>
+			<forward name="myPage" path="/member/myPage.jsp"></forward>
+			<forward name="update" path="/member/update.jsp"></forward>
+			<forward name="withdraw" path="/member/withdraw.jsp"></forward>
+		</action>
+	</action-mappings>
+
+</struts-config>
