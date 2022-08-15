@@ -39,6 +39,7 @@ public class BoardsAction extends DispatchAction {
 		} else if (mode.equals("update")) {
 
 			String pageNum = request.getParameter("pageNum");
+			String searchParam = request.getParameter("searchParam");
 			
 			String num = request.getParameter("boardNum");
 			if (num == null) {
@@ -55,6 +56,7 @@ public class BoardsAction extends DispatchAction {
 
 			request.setAttribute("dto", dto);
 			request.setAttribute("mode", mode);
+			request.setAttribute("searchParam", searchParam);
 			request.setAttribute("pageNum", pageNum);
 
 		}
@@ -88,6 +90,11 @@ public class BoardsAction extends DispatchAction {
 		} else if (mode.equals("update")) {
 			
 			dao.updateData("boards.updateData", dto);
+			
+			ActionForward af = new ActionForward();
+			af.setRedirect(true);
+			af.setPath("/boards.do?method=view&pageNum=" + currentPage + "&boardNum=" + dto.getBoardNum());
+			return af;
 			
 		} else if (mode.equals("delete")) {
 			
@@ -166,7 +173,7 @@ public class BoardsAction extends DispatchAction {
 		
 		request.setAttribute("list", list);
 		request.setAttribute("viewUrl", viewUrl);
-		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("pageNum", currentPage);
 		request.setAttribute("pageIndexList", myPage.pageIndexList(currentPage, totalPage, listUrl));
 		request.setAttribute("totalPage", totalPage);
 		request.setAttribute("totalDataCount", totalDataCount);
@@ -209,20 +216,26 @@ public class BoardsAction extends DispatchAction {
 			searchValue = URLDecoder.decode(searchValue, "UTF-8");
 		}
 		
-		String param = "";
+		String searchParam = "";
 		if (!searchValue.equals("")) {
 			searchValue = URLEncoder.encode(searchValue, "UTF-8");
-			param = "&searchKey=" + searchKey + "&searchValue=" + searchValue;
+			searchParam = "&searchKey=" + searchKey + "&searchValue=" + searchValue;
+		} else {
+			if (!request.getParameter("searchParam").equals("")){
+				searchParam = request.getParameter("searchParam");
+			}
 		}
-		String listUrl = cp + "/boards.do?method=list" + param;
+		
+		String listUrl = cp + "/boards.do?method=list" + searchParam;
 		
 		String pageNum = request.getParameter("pageNum");
-		String paramView = "&boardNum=" + boardNum + "&pageNum=" + pageNum + param;
+		String paramView = "&boardNum=" + boardNum + "&pageNum=" + pageNum + searchParam;
 
-		listUrl += "&pageNum=" + pageNum;
-		
+		listUrl += "&pageNum=" + pageNum + searchParam;
+
 		request.setAttribute("dto", dto);
 		request.setAttribute("paramView", paramView);
+		request.setAttribute("searchParam", searchParam);
 		request.setAttribute("listUrl", listUrl);
 
 		return mapping.findForward("view");
