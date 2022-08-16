@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css"href="<%=cp%>/member/css/member.css" />
 
 <script type="text/javascript">
+
 	function searchid(){
 	
 		var f = document.myForm;
@@ -31,7 +32,7 @@
 			return;
 		}
 		
-		f.action = "<%=cp%>/shop/member/findId_ok.do";
+		f.action = "<%=cp%>/member.do?method=find_ok.do";
 		f.submit();
 		
 	}
@@ -52,7 +53,7 @@
 			return;
 		}
 		
-		f.action = "<%=cp%>/shop/member/find_ok.do";
+		f.action = "<%=cp%>/member.do?method=find_ok.do";
 			f.submit();
 	}
 
