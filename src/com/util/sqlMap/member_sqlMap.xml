@@ -7,14 +7,10 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 
 <!-- 회원가입 -->
 <insert id="insert" parameterClass="com.member.MemberForm">
-	insert into member(userId,userPwd,userName,userGender,userBirth,userAddr,userEmail,userTel) values()
+	insert into member(userId,userPwd,userName,userGender,userBirth,userAddr,userEmail,userTel) values
 	(#userId#,#userPwd#,#userName#,#userGender#,
-	<iterate property="userBirth" conjunction=",">
-    #[]#
-	</iterate>,
-	<iterate property="userAddr" conjunction=",">
-    #[]#
-	</iterate>,
+	<iterate property="userBirth" conjunction="," open="'" close="'">$userBirth[]$</iterate>,
+	<iterate property="userAddr" conjunction="," open="'" close="'">$userAddr[]$</iterate>,	
 	#userEmail#,#userTel#)
 </insert>
 

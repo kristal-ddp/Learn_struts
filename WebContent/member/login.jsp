@@ -13,32 +13,33 @@
 <link rel="stylesheet" type="text/css"href="<%=cp%>/member/css/memberListStyle.css" />
 <link rel="stylesheet" type="text/css"href="<%=cp%>/css/shopStyle.css" />
 <link rel="stylesheet" type="text/css"href="<%=cp%>/member/css/member.css" />
+
 <script type="text/javascript">
 	function login(){
 	
-	var f = document.myForm;
-	
-	if(!f.userId.value){
-		alert("아이디를 입력해 주세요.");
-		f.userId.focus();
-		return;
-	}
-	
-	if(!f.userPwd.value){
-		alert("패스워드를 입력해 주세요.");
-		f.userPwd.focus();
-		return;
-	}
-	
-	f.action = "<%=cp%>/shop/member/login_ok.do";
-	f.submit();
+		var f = document.myForm;
+		
+		if(!f.userId.value){
+			alert("아이디를 입력해 주세요.");
+			f.userId.focus();
+			return;
+		}
+		
+		if(!f.userPwd.value){
+			alert("패스워드를 입력해 주세요.");
+			f.userPwd.focus();
+			return;
+		}
+		
+		f.action = "<%=cp%>/member.do?method=login_ok";
+		f.submit();
+		
 	}
 	
 </script>
 
 </head>
 <body>
-
 
 <div id="content" align="center">
 
