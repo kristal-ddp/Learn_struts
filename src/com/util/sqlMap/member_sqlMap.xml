@@ -5,13 +5,14 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 
 <sqlMap namespace="member">
 
+
 <!-- 회원가입 -->
 <insert id="insert" parameterClass="com.member.MemberForm">
-	insert into member(userId,userPwd,userName,userGender,userBirth,userAddr,userEmail,userTel) values
+	insert into member(userId,userPwd,userName,userGender,userBirth,userAddr,userEmail,userTel,registration) values
 	(#userId#,#userPwd#,#userName#,#userGender#,
 	<iterate property="userBirth" conjunction="," open="'" close="'">$userBirth[]$</iterate>,
 	<iterate property="userAddr" conjunction="," open="'" close="'">$userAddr[]$</iterate>,	
-	#userEmail#,#userTel#)
+	#userEmail#,#userTel#,1)
 </insert>
 
 <!-- 아이디 찾기 -->
