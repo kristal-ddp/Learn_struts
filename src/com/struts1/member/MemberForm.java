@@ -1,4 +1,4 @@
-package com.member;
+package com.struts1.member;
 
 import org.apache.struts.action.ActionForm;
 

@@ -1,4 +1,4 @@
-package com.boards;
+package com.struts1.boards;
 
 import org.apache.struts.action.ActionForm;
 
