@@ -61,6 +61,9 @@
 
 </head>
 <body>
+
+<jsp:include page="./header.jsp"/>
+
 <!-- 아이디 찾기 -->
 <div id="content" align="center">
 

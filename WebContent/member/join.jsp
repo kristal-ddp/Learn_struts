@@ -156,7 +156,7 @@ function idCheck(){
     }
 </script>
 </head>
-<body >
+<body>
    
 <div id="content" align="center">
 	<div class="join_wrap">
