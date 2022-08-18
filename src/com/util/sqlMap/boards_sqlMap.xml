@@ -10,35 +10,42 @@
 		#boardNum#, #userId#, #subject#, #content#, SYSDATE, 0
 	</sql>
 
+	<!-- -->
 	<select id="maxNum" resultClass="int">
 		SELECT NVL(MAX(BOARDNUM), 0) FROM BOARDS
 	</select>
 
+	<!-- 글 조회 view -->
 	<select id="readData" resultClass="com.boards.BoardsForm" parameterClass="int">
 		SELECT <include refid="column"/>
 			FROM BOARDS
 			WHERE BOARDNUM = #boardNum#
 	</select>
 
+	<!-- 글 작성 -->
 	<insert id="insertData" parameterClass="com.boards.BoardsForm">
 		INSERT INTO BOARDS(<include refid="column"/>)
 			VALUES(<include refid="input-column"/>)
 	</insert>
 	
+	<!-- 글 수정 -->
 	<update id="updateData" parameterClass="com.boards.BoardsForm">
 		UPDATE BOARDS SET SUBJECT = #subject#, CONTENT = #content#
 			WHERE BOARDNUM = #boardNum#
 	</update>
 
+	<!-- 조회수 증가 -->
 	<update id="hitCount" parameterClass="int">
 		UPDATE BOARDS SET HITS = HITS + 1
 			WHERE BOARDNUM = #boardNum#
 	</update>
 
+	<!-- 글 삭제 -->
 	<delete id="deleteData" parameterClass="int">
 		DELETE BOARDS WHERE BOARDNUM = #boardNum#
 	</delete>
 
+	<!-- 리스트 -->
 	<select id="getList" resultClass="com.boards.BoardsForm" parameterClass="map">
 		SELECT * FROM (
 			SELECT ROWNUM AS RNUM, DATA.* FROM (
@@ -49,6 +56,7 @@
 			WHERE RNUM BETWEEN #start# AND #end#
 	</select>
 	
+	<!-- 전체 글수 -->
 	<select id="dataCount" resultClass="int" parameterClass="map">
 		SELECT COUNT(*)
 			FROM BOARDS
