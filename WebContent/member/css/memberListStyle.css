@@ -21,8 +21,8 @@ b {
 
 
 #content {
-   width: 1000px; 
-   
+	 margin: 104px auto 30px;
+	width: 100%;
 }
 
 #cartList {
