@@ -2,6 +2,9 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="boards">
+
+<typeAlias alias="BoardsDTO" type="com.struts2.boards.BoardsDTO"/>
+
 	<sql id="column">
 		BOARDNUM, USERID, SUBJECT, CONTENT, POSTDATE, HITS
 	</sql>
@@ -16,20 +19,20 @@
 	</select>
 
 	<!-- 글 조회 view -->
-	<select id="readData" resultClass="com.boards.BoardsForm" parameterClass="int">
+	<select id="readData" resultClass="BoardsDTO" parameterClass="int">
 		SELECT <include refid="column"/>
 			FROM BOARDS
 			WHERE BOARDNUM = #boardNum#
 	</select>
 
 	<!-- 글 작성 -->
-	<insert id="insertData" parameterClass="com.boards.BoardsForm">
+	<insert id="insertData" parameterClass="BoardsDTO">
 		INSERT INTO BOARDS(<include refid="column"/>)
 			VALUES(<include refid="input-column"/>)
 	</insert>
 	
 	<!-- 글 수정 -->
-	<update id="updateData" parameterClass="com.boards.BoardsForm">
+	<update id="updateData" parameterClass="BoardsDTO">
 		UPDATE BOARDS SET SUBJECT = #subject#, CONTENT = #content#
 			WHERE BOARDNUM = #boardNum#
 	</update>
@@ -46,7 +49,7 @@
 	</delete>
 
 	<!-- 리스트 -->
-	<select id="getList" resultClass="com.boards.BoardsForm" parameterClass="map">
+	<select id="getList" resultClass="BoardsDTO" parameterClass="map">
 		SELECT * FROM (
 			SELECT ROWNUM AS RNUM, DATA.* FROM (
 				SELECT <include refid="column"/>
@@ -62,5 +65,37 @@
 			FROM BOARDS
 			WHERE $searchKey$ LIKE '%' || #searchValue# || '%'
 	</select>
+	
+	<!-- 이전글 -->
+	<select id="preReadData" parameterClass="map" resultClass="BoardsDTO">
+		SELECT DATA.* FROM (
+		SELECT BOARDNUM,SUBJECT FROM BOARDS
+		WHERE ($SEARCHKEY$ LIKE '%' || #SEARCHVALUE# || '%') AND
+	<![CDATA[
+		((GROUPNUM=#groupNum# AND ORDERNUM<#orderNum#)
+		OR (GROUPNUM>#groupNum#))
+		ORDER BY GROUPNUM ASC, ORDERNUM DESC) DATA
+		WHERE ROWNUM=1
+	]]>
+	</select>
+	
+	<!-- 다음글 -->
+	<select id="nextReadData" parameterClass="map" resultClass="BoardsDTO">
+		SELECT DATA.* FROM (
+		SELECT BOARDNUM,SUBJECT FROM BOARDS
+		WHERE ($searchKey$ LIKE '%' || #searchValue# || '%') AND
+	<![CDATA[
+		((GROUPNUM=#groupNum# AND ORDERNUM>#orderNum#)
+		OR (GROUPNUM<#groupNum#))
+		ORDER BY GROUPNUM DESC, ORDERNUM ASC) DATA
+		WHERE ROWNUM=1
+	]]>
+	</select>
+	
+	<!-- 답글 순서를 정해주는 번호 -->
+	<update id="orderNumUpdate" parameterClass="map">
+		UPDATE BOARDS SET ORDERNUM=ORDERNUM+1
+		WHERE GROUPNUM=#groupNum# AND ORDERNUM>#orderNum#
+	</update>
 
 </sqlMap>
