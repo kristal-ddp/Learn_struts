@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+#content {
+	margin: 104px auto 30px;
+	width: 100%;
+}
+
+.right_area {
+    position: absolute;
+    right: 50px;
+    top: 0px;
+    z-index: 3000;
+}
+
+.right_area a{
+	font: 10pt;
+	text-decoration: none;
+    color: #484848;
+}
+
+button.add_button {
+	width: 325px;
+	display: inline-block;
+	margin: 5px;
+	height: 98px;
+	padding-bottom: 9px;
+	line-height: 26px;
+}
+.add_button span {
+	font-size: 8px;
+	color: #484848;"
+	
+}
+.add_button b {
+	font-size: 17px;
+	color: black;
+		
+}

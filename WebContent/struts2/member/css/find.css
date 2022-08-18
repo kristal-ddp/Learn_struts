@@ -21,8 +21,8 @@ b {
 
 
 #content {
-	 margin: 104px auto 30px;
-	width: 100%;
+   width: 1000px; 
+   
 }
 
 #cartList {
@@ -59,7 +59,7 @@ b {
 
 #userPwd{
 	display: inline-block;
-   /*  width: 100px; */
+    width: 100px;
     font: 9pt 'S-CoreDream-3Light','NeueHaasDisplay','Roboto','Noto Sans KR','Helvetica','Malgun Gothic',sans-serif;
     border: none;
     float: left;
@@ -71,13 +71,13 @@ b {
 
 #userName {
 	
+	font: 9pt 'S-CoreDream-3Light','NeueHaasDisplay','Roboto','Noto Sans KR','Helvetica','Malgun Gothic',sans-serif;
 	display: inline-block;
-    width: 300px;
-    font-size: 13px;
+    width: 100px;
     border: none;
     float: left;
     outline: none;
-    
+    margin-left: 30px;
     
 
 
@@ -127,11 +127,12 @@ b {
 }
 #userTel{
 	display: inline-block;
-    width: 150px;
-    font-size: 13px;
+    width: 100px;
+    font: 9pt 'S-CoreDream-3Light','NeueHaasDisplay','Roboto','Noto Sans KR','Helvetica','Malgun Gothic',sans-serif;
     border: none;
     float: left;
     outline: none;
+    margin-left: 30px;
 }
 #userEmail{
 	display: inline-block;
@@ -144,7 +145,7 @@ b {
 
 #sample6_address{
 	display: inline-block;
-    width: 220px;
+    width: 200px;
     font-size: 13px;
     border: none;
     float: left;
@@ -211,7 +212,7 @@ label span {
 input {
    display: inline-block;
    width: 300px;
-   font-size: 9px;
+   font-size: 13px;
    border: none;
    float: left;
    outline: none;
@@ -228,10 +229,11 @@ input.input-2 {
 }
 
 input::-webkit-input-placeholder {
-	text-decoration: none;
-	color: #484848;
-	font-size: 8pt;
-	text-align: left;
+ text-decoration: none;
+    color: #484848;
+    font-size: 8pt;
+  font-style: italic;
+  text-align: left;
 }
 
 

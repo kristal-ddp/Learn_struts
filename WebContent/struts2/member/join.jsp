@@ -1,72 +1,62 @@
-<%@page import="com.sun.prism.impl.Disposer.Target"%>
-<%-- <%@page import="com.member.MemberDTO"%>
-<%@page import="com.member.MemberDAO"%>
-<%@page import="com.util.DBConn"%> --%>
-<%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
-	
-	String userId = request.getParameter("userId");
-	/* 
-	Connection conn= DBConn.getConnection();
-	MemberDAO dao = new MemberDAO(conn);
-	
-	MemberDTO dto = dao.getReadData(userId);
-	 */
-
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>kristal회원정보수정</title>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css"href="<%=cp%>/css/shopStyle.css" />
 <link rel="stylesheet" type="text/css"href="<%=cp%>/member/css/memberListStyle.css" />
 <link rel="stylesheet" type="text/css" href="<%=cp%>/member/css/member.css" />
 
-
-
 <script type="text/javascript">
 
-
-	function sendIt() {
+	function sendIt(){
+		
 		var f = document.myForm;
 		
-		
-		
-		
-		
-		
-		
-		if(!f.userAddr[0].value){
-			alert("0주소을 입력해 주세요.");
-			f.userAddr[0].focus();
+		if(!f.userId.value){
+			alert("아이디를 입력해 주세요.");
+			f.userId.focus();
 			return;
 		}
 		
-		if(!f.userAddr[1].value){
-			alert("1주소을 입력해 주세요.");
-			f.userAddr[1].focus();
+		if(!f.userPwd.value){
+			alert("패스워드를 입력해 주세요.");
+			f.userPwd.focus();
+			return;
+		}
+			
+		if(!f.userName.value){
+			alert("이름을 입력해 주세요.");
+			f.userName.focus();
 			return;
 		}
 		
-		if(!f.userAddr[2].value){
-			alert("2주소을 입력해 주세요.");
-			f.userAddr[2].focus();
+		if(!f.userGender.value){
+			alert("성별을 입력해 주세요.");
+			f.userGender.focus();
 			return;
 		}
-		
-		if(!f.userAddr[3].value){
-			alert("3주소을 입력해 주세요.");
-			f.userAddr[3].focus();
+		if(!f.userBirth[0].value){
+			alert("생년월일을 입력해 주세요.");
+			f.userBirth[0].focus();
 			return;
 		}
-		
-		
-		
+		 if(!f.userBirth[1].value){
+			alert("월을 입력해 주세요.");
+			f.userBirth[1].focus();
+			return;
+		}
+		if(!f.userBirth[2].value){
+			alert("일을 입력해 주세요.");
+			f.userBirth[2].focus();
+			return;
+		}
 		
 		if(!f.userTel.value){
 			alert("전화번호를 입력해 주세요.");
@@ -74,54 +64,47 @@
 			return;
 		}
 		
-		
-		if(!f.userEmail.value){
-			alert("이메일를 입력해 주세요.");
+		/* if(!f.userEmail.value){
+			alert("E-Mail 입력해 주세요.");
 			f.userEmail.focus();
 			return;
-		}
-		
-		
-	
-			
-		f.action = "<%=cp%>/shop/member/update_ok.do"
+		} */
+		f.action = "<%=cp%>/member.do?method=join_ok"
 		f.submit();
+		
 	}
 	
-	</script>
 	
-<!-- <script type="text/javascript">
-	function wewe() {
+<%-- function checkid(){
+		
 		var f = document.myForm;
-		var month = f.userBirth[]; 
-		var gender = f.userGender; 
 		
-		for(i=0;i<12;i++){
-			
-			if(f.userBirth[i].value == ${dto.userBirth }){
-				f.userBirth[i].selected =true;
-			}
-			
-			
+		f.action = "<%=cp%>/shop/member/idcheck.do"
+			f.submit();
+		
+		
 		}
 		
-		for(i=0;i<4;i++){
-			
-			if(f.userGender[i].value ==${dto.userGender}){
-				f.userGender[i].selected = true;
-			}
-		}
-		
-		
-		
-	}
+function idCheck(){
+	var id = document.myForm.userId.value;
+	
+ window.open("<%=cp%>/shop/member/idcheck.do?userId="+id,"_blank","width=300px height=200px left=800px top=350px"); 
+	
+	
+	
+} --%>
 
+/* function idCheck2(){
 	
+	opener.myForm.userId.value="d";
+	opener.myForm.userId
+	
+} */
 
-	
-	
-	</script>  -->
-	
+
+</script>
+    
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
@@ -172,28 +155,16 @@
         }).open();
     }
 </script>
-
-
-
-
-
 </head>
-<body >
-
-<jsp:include page="./header.jsp"/>
+<body>
    
-   <div id="content" align="center" >
-   
-      
-   	<form action="" method="post" name="myForm">
-   	
-
-   
-   	
-
-
-			
-
+<div id="content" align="center">
+	<div class="join_wrap">
+		<div class="joinTitle" align="center" style="font-weight: 700;padding-top: 15px;font: 10pt;">회원가입</div>
+		
+		<form action="" method="post" name="myForm">
+		 
+		  
 		<div id="left_area" style="display: inline-block; width: 400px;padding-bottom: 25px;">
 	               <div id="update_area">
 	                  <div class="box row">
@@ -201,14 +172,13 @@
 	                        <label for="userId"><span>ID</span></label>
 	                     </div>
 	                   <div class="box input">
-	                        <input readonly="readonly" autofocus onKeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'');" type="text" 
-	                        name="userId" class="inputStyle" placeholder="아이디" value="${dto.userId }"/>
-	                     
+	                        <input autofocus onKeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'');" type="text" name="userId" class="inputStyle" placeholder="아이디"/>
+	                     	<input type="button" value="중복확인" class="inputStyle"  onclick="idCheck()"/> 
 	                     </div>
 	                   </div>
 	                   <div class="box row">
 		                     <div class="joinLabel">
-		                        <label for="userName"><span>PASSWORD</span><br><a>(선택가능)</a></label>
+		                        <label for="userName"><span>PASSWORD</span></label>
 		                     </div>
 		                     <div class="box input">
 		                        <input type="password" name="userPwd" class="inputStyle" placeholder="비밀번호"/>
@@ -220,19 +190,23 @@
 		                        <label for="userName"><span>NAME</span></label>
 		                     </div>
 		                     <div class="box input">
-		                        <input type="text" name="userName" class="inputStyle" placeholder="이름" value="${dto.userName }" readonly="readonly"/>
+		                        <input type="text" name="userName" class="inputStyle" placeholder="이름"/>
 		                     </div>
 	             		</div>
 	                  
 	                    
 	                  	  <div class="box row">
 		                     <div class="joinLabel">
-		                        <label for="userName""><span>GENDER</span></label>
+		                        <label for="userGender"><span>GENDER</span></label>
 		                     </div>
 		                     <div class="box input">
-		                     <input type="text" name="userGender" id="userGender" value="${dto.userGender }" readonly="readonly"/>
-		                       <!--  <select style="border: none; width: 80; height: 30; font-size: 8pt;font-style: italic;"name="userGender">
-		                       		 -->
+		                     <!--  <input type="text" name="userGender" id="userGender"/> -->
+		                        <select style="border: none; width: 80; height: 30; font-size: 8pt;font-style: italic;"name="userGender">
+		                       		<option value="">선택</option>
+		                        	<option value="선택안함">선택안함</option>
+		                        	<option value="남자">남자</option>
+		                        	<option value="여자">여자</option>	                        
+		                        </select>
 		                     </div>
 	             		</div>
 	                   <div class="box row">
@@ -241,51 +215,53 @@
 		                     </div>
 		                     <div class="box input">
 		                     <span style="float: left;vertical-align: middle;">
-		                  		<input readonly="readonly"  maxlength="4" style="width: 100px;" type="text" 
-		                  		name="userBirth" class="inputStyle"  value="${dto.userBirth[0] } ${dto.userBirth[1] } ${dto.userBirth[2] } " />
-		                  		
-		                  		
-		                  		
-		                  		
+		                  		<input onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="4" style="width: 50px;" 
+		                  		type="text" name="userBirth" class="inputStyle" placeholder="년도"/> 
 			                 </span>
-			                 
-			                 
-			                 
-			            <!--      <span style="float: left;vertical-align: middle;">
-			    
-			                 
-			                 
-			                 
-			                   
-							</span> -->
-							<!-- <span style="float: left;vertical-align: middle;padding-left: 20px;">
-								<input maxlength="2" style="width: 50px;margin-bottom: 5px;font-style: italic;" type="text" name="userBirth" id="userBirth" placeholder="일"/> 
-	                    	</span> -->
+			                 <span style="float: left;vertical-align: middle;">
+			                    <select style="border: none; width: 80; height: 30; font-size: 8pt;font-style: italic;" name="userBirth">
+								<option value="">월</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option></select>
+							</span>
+							<span style="float: left;vertical-align: middle;padding-left: 20px;">
+								<input maxlength="2" style="width: 50px;margin-bottom: 5px;font-style: italic; vertical-align: middle;" type="text" name="userBirth" id="userBirth" placeholder="일"/> 
+	                    	</span>
 		                    </div>
 	             		</div>
 
 						<div class="box row" style="height: 110px;">
 							<div class="joinLabel" style="height: 80px;">
-								<label style="" for="userAddress"><span>ADDRESS</span><br><a>(선택가능)</a></label>
+								<label style="" for="userAddress"><span>ADDRESS</span></label>
 							</div>
 							<div class="box input"
 								style="margin-top: 10px; margin-bottom: 15px; height: 80px;">
 								<div style="padding-bottom: 8px;">
 									<input maxlength="6" type="text" name="userAddr" id="sample6_postcode"
 									style="float: left; padding-right: 0; padding-bottom:10pt; display: block;vertical-align: middle;font-size: 9pt;"
-									class="input-2" placeholder="우편번호" value="${dto.userAddr[0] }">
+									class="input-2" placeholder="우편번호">
 									<input class="join_button" type="button" onclick="sample6_execDaumPostcode()"
 									style="display: block;vertical-align: middle; height: 15pt;font-size: 9pt;float: left;line-height: 4px;" value="우편번호 찾기">
 								</div>
 								<div class="box input" style="display:block; padding-bottom: 15px;">
-									<input type="text" name="userAddr" id="sample6_address" placeholder="주소" style="padding-bottom:8pt;font-size: 9pt;" value="${dto.userAddr[1] }">
+									<input type="text" name="userAddr" id="sample6_address" placeholder="주소" style="padding-bottom:8pt;font-size: 9pt;">
 								</div>
 								<div class="box input"
 									style="display: block; padding-bottom: 15px;">
-									<input type="text" name="userAddr" id="sample6_detailAddress" placeholder="상세주소" style="padding-bottom: 8pt;font-size: 9pt;" value="${dto.userAddr[2] }">
+									<input type="text" name="userAddr" id="sample6_detailAddress" placeholder="상세주소" style="padding-bottom: 8pt;font-size: 9pt;">
 
 									<div class="box input">
-										<input type="text" maxlength="50" name="userAddr" id="sample6_extraAddress" placeholder="참고항목" value="${dto.userAddr[3] }">
+										<input type="text" maxlength="50" name="userAddr" id="sample6_extraAddress" placeholder="참고항목">
 									</div>
 								</div>
 							</div>
@@ -293,90 +269,69 @@
 					</div>
 	                <div class="box row">
 	                     <div class="joinLabel">
-	                        <label for="userTel"><span>TEL</span><a>(선택가능)</a></label>
+	                        <label for="userTel"><span>TEL</span></label>
 	                     </div>
 	                     <div class="box input">
-	                        <input onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="11" type="text" name="userTel" id="userTel" 
-	                        placeholder="(-)없이 숫자만 입력해주세요." value="${dto.userTel }"/>
+	                        <input onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="11" type="text" name="userTel" id="userTel" placeholder="(-)없이 숫자만 입력해주세요."/>
 	                     </div>
 	                  </div>
 	                  <div class="box row">
 	                     <div class="joinLabel">
-	                        <label for="userEmail"><span>E-MAIL</span><a>(선택가능)</a></label>
+	                        <label for="userEmail"><span>E-MAIL</span></label>
 	                     </div>
 	                     <div class="box input">
-	                        <input type="text" name="userEmail" id="userEmail" placeholder="이메일 (선택사항)" value="${dto.userEmail }"/>
+	                        <input type="text" name="userEmail" id="userEmail" placeholder="이메일 (선택사항)"/>
 	                     </div>
 	                  </div>
 	                </div>
-	                </form>
 	            </div>
-
-	<div align="center">
-	
-	
-		<button
+	    
+	    <!-- form안에 넣어줘야 JOIN버튼을 눌렀을 때 가지고 감 -->
+        <input type="hidden" name="mode" value="${mode }"/>
+		<c:if test="${mode=='insert' }">
+			<div align="center">
+				<div style="float: left; padding-left: 370px; padding-right: 10px;">	
+					<button class="add_button" type="button" style="width: 170px;" onclick="javascript:history.back();">
+						<a style=" font-size: 8px; color: #484848;">BACK</a>
+					</button>
+				</div>
+				
+				<div style="float: left;">
+					<button class="add_button" type="button" style="width: 170px;" onclick="sendIt();">
+						<a style=" font-size: 8px; color: #484848;">JOIN</a>
+					</button>	
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${mode=='update' }">
+			<button
 			style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;"
 			type="button" onclick="javascript:history.back();"
 			onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
 			<a style="font-size: 8px; color: #484848;">BACK</a>
-		</button>
-
-		<button
-			style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;"
-			type="button" onclick="sendIt();"
-			onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
-			<a style="font-size: 8px; color: #484848;">완료</a>
-		</button>
+			</button>
+	
+			<button
+				style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;"
+				type="button" onclick="sendIt();"
+				onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
+				<a style="font-size: 8px; color: #484848;">완료</a>
+			</button>
+			
+			<button
+				style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;"
+				type="button" onclick="javascript:location.href='<%=cp%>/shop/member/delete.do';"
+				onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
+				<a style="font-size: 8px; color: #484848;">회원탈퇴</a>
+			</button>
+		</c:if>
+	            
+		</form>
 		
-		<button
-			style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;"
-			type="button" onclick="javascript:location.href='<%=cp%>/shop/member/delete.do';"
-			onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
-			<a style="font-size: 8px; color: #484848;">회원탈퇴</a>
-		</button>
-
-	
-		<!-- 	<button
-			style="cursor: pointer; border: 0.5; background-color: white; width: 200px; height: 50px;"
-			type="button" onclick="javascript:history.back();"
-			onmouseover=this.style.backgroundColor=
-			'#F0F0F0' onmouseout=this.style.backgroundColor='white'>
-			<b style="font-size: 17px; color: black;">뒤로가기</b>
-		</button> -->
-		<!-- &nbsp;&nbsp; -->
-	<%-- 	<button
-			style="cursor: pointer; background-color: black; width: 200px; height: 50px;"
-			type="button" onclick="sendIt();"
-			onmouseover=this.style.backgroundColor=
-			'#6E6E6E' onmouseout=this.style.backgroundColor='black'>
-			<b style="font-size: 17px; color: white;">수정완료</b>
-		</button>
+		
 	</div>
-	<br>
-	<div class="box input">
-		<button
-			style="cursor: pointer; border: 0.5; background-color: white; width: 100px; height: 25px;"
-			type="button"
-			onclick="javascript:location.href='<%=cp%>/shop/member/delete.do';"
-			onmouseover=this.style.backgroundColor=
-			'#F0F0F0' onmouseout=this.style.backgroundColor='white'>
-			<b style="font-size: 13px; color: black;">회원탈퇴</b>
-		</button>
-	</div>
- --%>
-
-
-
-
-
-
-
-
-
-
-
 </div>
-	
+   
+
 </body>
 </html>

@@ -1,0 +1,58 @@
+.boardList {
+    margin: 20px auto 0;
+}
+
+.boardTitle {
+    font-weight: 700;
+    font: 14px'S-CoreDream-3Light','NeueHaasDisplay','Roboto','Noto Sans KR','Helvetica','Malgun Gothic',sans-serif;
+	color: #555;
+    margin-bottom: 30px;
+}
+
+table {
+	width: 100%;
+}
+
+table td {
+	padding: 8px 10px 7px 0!important;
+}
+
+.name {
+	display: inline;
+	font-weight: 700;
+	padding-right: 10pt;
+}
+
+p {
+	display: inline;
+	font-weight: 400;
+	padding-left: 5pt;
+}
+
+.boardContent {
+	border: 1px solid #dfdfdf;
+	padding: 20px 30px 30px;
+	width: 600px;
+	color: #484848;
+}
+
+.viewContent{
+	min-height: 120px;
+}
+
+.button{
+	display: inline;
+	font-weight: 700;
+}
+
+.elementLeft{
+	float: left;
+}
+
+.elementRight{
+	float: right;
+}
+
+.element{
+	padding-right: 10pt;
+}
