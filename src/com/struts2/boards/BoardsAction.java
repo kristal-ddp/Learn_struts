@@ -65,7 +65,7 @@ public class BoardsAction extends ActionSupport
 	}
 	
 	public String list() throws Exception{
-		
+		System.out.println("¤Ð¤Ð");
 		CommonDAO dao = CommonDAOImpl.getInstance();
 		
 		MyPage myPage = new MyPage();
