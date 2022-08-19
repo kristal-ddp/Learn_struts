@@ -13,12 +13,12 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 		insert into member(userId, userPwd, userName, userGender, userBirth, userAddr, userEmail, userTel, registration)
 			values(#userId#, #userPwd#, #userName#, #userGender#,
 				<iterate property="userBirth" conjunction="," open="'" close="'">$userBirth[]$</iterate>,
-				<iterate property="userAddr" conjunction="," open="'" close="'">$userAddr[]$</iterate>,	
+				<iterate property="userAddr" conjunction="," open="'" close="'">$userAddr[]$</iterate>,
 				#userEmail#, #userTel#, 1)
 	</insert>
 	
 	<!-- 로그인 -->
-	<select id="login" parameterClass="memberDTO" resultClass="String">
+	<select id="login" resultClass="String" parameterClass="memberDTO">
 		select userId from member
 			where userId = #userId# and userPwd = #userPwd# and registration = 1
 	</select>
@@ -36,13 +36,14 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 	</select>
 	
 	<!-- 모든 데이터 필요시 -->
-<!-- 	<select id="readData" parameterClass="String" resultClass="memberDTO">
+	<select id="readData" parameterClass="String" resultClass="memberDTO">
 		select userId, userPwd, userName, userGender,
-				<iterate prepend="userAddr" conjunction="," open="'" close="'">$userAddr[]$</iterate>,
+				'{' || TO_CHAR(USERBIRTH, 'YYYY,MM,DD') || '}' AS USERBIRTH,
+				'{' || USERADDR || '}' AS USERADDR,
 				userAddr, userEmail, userTel
 			from member
 			where userId = #userId# and registration = 1
-	</select> -->
+	</select>
 	
 	<!-- 회원정보 수정 -->
 	<update id="update" parameterClass="memberDTO">
