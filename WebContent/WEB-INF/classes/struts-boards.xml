@@ -13,21 +13,21 @@
  		</action>
  		
  		<action name="view" method="view" class="com.struts2.boards.BoardsAction">
- 			<result name="success" type="tiles">/struts2/boards/view.jsp</result>
+ 			<result name="success">/struts2/boards/view.jsp</result>
  		</action>
  		
  		<action name="write" method="write" class="com.struts2.boards.BoardsAction">
- 			<result name="input" type="tiles">/struts2/boards/write.jsp</result>
+ 			<result name="input">/struts2/boards/write.jsp</result>
  			<result name="success" type="redirectAction">list</result>
  		</action>
  		
  		<action name="update" method="update" class="com.struts2.boards.BoardsAction">
- 			<result name="input" type="tiles">/struts2/boards/write.jsp</result>
+ 			<result name="input">/struts2/boards/write.jsp</result>
  			<result name="success" type="redirectAction">list?pageNum=${dto.pageNum }</result>
  		</action>
  		
  		<action name="reply" method="reply" class="com.struts2.boards.BoardsAction">
- 			<result name="input" type="tiles">/struts2/boards/write.jsp</result>
+ 			<result name="input">/struts2/boards/write.jsp</result>
  			<result name="success" type="redirectAction">list?pageNum=${dto.pageNum }&amp;searchKey=${dto.searchKey }</result>
  		</action>
  		
