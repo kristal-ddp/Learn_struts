@@ -1,17 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"href="<%=cp%>/css/shopStyle.css" />
-<link rel="stylesheet" type="text/css"href="<%=cp%>/member/css/memberListStyle.css" />
-<link rel="stylesheet" type="text/css" href="<%=cp%>/member/css/member.css" />
+
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/shopStyle.css"/>
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/memberListStyle.css" />
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/member.css" />
 
 <script type="text/javascript">
 
@@ -69,7 +70,7 @@
 			f.userEmail.focus();
 			return;
 		} */
-		f.action = "<%=cp%>/member.do?method=join_ok"
+		f.action = "<%=cp%>/member/join.action"
 		f.submit();
 		
 	}
@@ -103,10 +104,9 @@ function idCheck(){
 
 
 </script>
-    
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+<script type="text/javascript">
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -157,89 +157,94 @@ function idCheck(){
 </script>
 </head>
 <body>
-   
-<div id="content" align="center">
-	<div class="join_wrap">
-		<div class="joinTitle" align="center" style="font-weight: 700;padding-top: 15px;font: 10pt;">회원가입</div>
-		
-		<form action="" method="post" name="myForm">
-		 
-		  
-		<div id="left_area" style="display: inline-block; width: 400px;padding-bottom: 25px;">
-	               <div id="update_area">
-	                  <div class="box row">
-	                  <div class="joinLabel">
-	                        <label for="userId"><span>ID</span></label>
-	                     </div>
-	                   <div class="box input">
-	                        <input autofocus onKeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'');" type="text" name="userId" class="inputStyle" placeholder="아이디"/>
-	                     	<input type="button" value="중복확인" class="inputStyle"  onclick="idCheck()"/> 
-	                     </div>
-	                   </div>
-	                   <div class="box row">
-		                     <div class="joinLabel">
-		                        <label for="userName"><span>PASSWORD</span></label>
-		                     </div>
-		                     <div class="box input">
-		                        <input type="password" name="userPwd" class="inputStyle" placeholder="비밀번호"/>
-		                     </div>
-	             		</div>
-	                   
-	                    <div class="box row">
-		                     <div class="joinLabel">
-		                        <label for="userName"><span>NAME</span></label>
-		                     </div>
-		                     <div class="box input">
-		                        <input type="text" name="userName" class="inputStyle" placeholder="이름"/>
-		                     </div>
-	             		</div>
-	                  
-	                    
-	                  	  <div class="box row">
-		                     <div class="joinLabel">
-		                        <label for="userGender"><span>GENDER</span></label>
-		                     </div>
-		                     <div class="box input">
-		                     <!--  <input type="text" name="userGender" id="userGender"/> -->
-		                        <select style="border: none; width: 80; height: 30; font-size: 8pt;font-style: italic;"name="userGender">
-		                       		<option value="">선택</option>
-		                        	<option value="선택안함">선택안함</option>
-		                        	<option value="남자">남자</option>
-		                        	<option value="여자">여자</option>	                        
-		                        </select>
-		                     </div>
-	             		</div>
-	                   <div class="box row">
-		                     <div class="joinLabel">
-		                        <label for="userName"><span>BIRTH</span></label>
-		                     </div>
-		                     <div class="box input">
-		                     <span style="float: left;vertical-align: middle;">
-		                  		<input onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="4" style="width: 50px;" 
-		                  		type="text" name="userBirth" class="inputStyle" placeholder="년도"/> 
-			                 </span>
-			                 <span style="float: left;vertical-align: middle;">
-			                    <select style="border: none; width: 80; height: 30; font-size: 8pt;font-style: italic;" name="userBirth">
-								<option value="">월</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option></select>
-							</span>
-							<span style="float: left;vertical-align: middle;padding-left: 20px;">
-								<input maxlength="2" style="width: 50px;margin-bottom: 5px;font-style: italic; vertical-align: middle;" type="text" name="userBirth" id="userBirth" placeholder="일"/> 
-	                    	</span>
-		                    </div>
-	             		</div>
-
+	<jsp:include page="./header.jsp"/>
+	<div id="content" align="center">
+		<div class="join_wrap">
+			<div class="joinTitle" align="center" style="font-weight: 700; padding-top: 15px; font: 10pt;">
+				회원가입
+			</div>
+			<!-- input -->
+			<div id="left_area" style="display: inline-block; width: 400px; padding-bottom: 25px;">
+				<form action="" method="post" name="myForm">
+					<div id="update_area">
+						<!-- ID -->
+						<div class="box row">
+							<div class="joinLabel">
+								<label for="userId"><span>ID</span></label>
+							</div>
+							<div class="box input">
+								<input autofocus
+									onKeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'');"
+									type="text" name="userId" class="inputStyle" placeholder="아이디" />
+								<input type="button" value="중복확인" class="inputStyle"
+									onclick="idCheck()" />
+							</div>
+						</div>
+						<!-- PASSWORD -->
+						<div class="box row">
+							<div class="joinLabel">
+								<label for="userName"><span>PASSWORD</span></label>
+							</div>
+							<div class="box input">
+								<input type="password" name="userPwd" class="inputStyle" placeholder="비밀번호" />
+							</div>
+						</div>
+						<!-- NAME -->
+						<div class="box row">
+							<div class="joinLabel">
+								<label for="userName"><span>NAME</span></label>
+							</div>
+							<div class="box input">
+								<input type="text" name="userName" class="inputStyle" placeholder="이름" />
+							</div>
+						</div>
+						<!-- GENDER -->
+						<div class="box row">
+							<div class="joinLabel">
+								<label for="userGender"><span>GENDER</span></label>
+							</div>
+							<div class="box input">
+								<!--  <input type="text" name="userGender" id="userGender"/> -->
+								<select style="border: none; width: 80; height: 30; font-size: 8pt; font-style: italic;" name="userGender">
+									<option value="">선택</option>
+									<option value="선택안함">선택안함</option>
+									<option value="남자">남자</option>
+									<option value="여자">여자</option>
+								</select>
+							</div>
+						</div>
+						<!-- BIRTH -->
+						<div class="box row">
+							<div class="joinLabel">
+								<label for="userName"><span>BIRTH</span></label>
+							</div>
+							<div class="box input">
+								<span style="float: left; vertical-align: middle;">
+									<input onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="4" style="width: 50px;" type="text" name="userBirth" class="inputStyle" placeholder="년도" />
+								</span> 
+								<span style="float: left; vertical-align: middle;">
+									<select style="border: none; width: 80; height: 30; font-size: 8pt; font-style: italic;" name="userBirth">
+											<option value="">월</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+									</select>
+								</span>
+								<span style="float: left; vertical-align: middle; padding-left: 20px;">
+									<input maxlength="2" style="width: 50px; margin-bottom: 5px; font-style: italic; vertical-align: middle;" type="text" name="userBirth" id="userBirth" placeholder="일" />
+								</span>
+							</div>
+						</div>
+						<!-- ADDRESS -->
 						<div class="box row" style="height: 110px;">
 							<div class="joinLabel" style="height: 80px;">
 								<label style="" for="userAddress"><span>ADDRESS</span></label>
@@ -247,91 +252,84 @@ function idCheck(){
 							<div class="box input"
 								style="margin-top: 10px; margin-bottom: 15px; height: 80px;">
 								<div style="padding-bottom: 8px;">
-									<input maxlength="6" type="text" name="userAddr" id="sample6_postcode"
-									style="float: left; padding-right: 0; padding-bottom:10pt; display: block;vertical-align: middle;font-size: 9pt;"
-									class="input-2" placeholder="우편번호">
-									<input class="join_button" type="button" onclick="sample6_execDaumPostcode()"
-									style="display: block;vertical-align: middle; height: 15pt;font-size: 9pt;float: left;line-height: 4px;" value="우편번호 찾기">
+									<input maxlength="6" type="text" name="userAddr" id="sample6_postcode" class="input-2" placeholder="우편번호"
+										style="float: left; padding-right: 0; padding-bottom: 10pt; display: block; vertical-align: middle; font-size: 9pt;">
+									<input class="join_button" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
+										style="display: block; vertical-align: middle; height: 15pt; font-size: 9pt; float: left; line-height: 4px;">
 								</div>
-								<div class="box input" style="display:block; padding-bottom: 15px;">
-									<input type="text" name="userAddr" id="sample6_address" placeholder="주소" style="padding-bottom:8pt;font-size: 9pt;">
+								<div class="box input" style="display: block; padding-bottom: 15px;">
+									<input type="text" name="userAddr" id="sample6_address" placeholder="주소" style="padding-bottom: 8pt; font-size: 9pt;">
 								</div>
-								<div class="box input"
-									style="display: block; padding-bottom: 15px;">
-									<input type="text" name="userAddr" id="sample6_detailAddress" placeholder="상세주소" style="padding-bottom: 8pt;font-size: 9pt;">
-
+								<div class="box input" style="display: block; padding-bottom: 15px;">
+									<input type="text" name="userAddr" id="sample6_detailAddress" placeholder="상세주소" style="padding-bottom: 8pt; font-size: 9pt;">
 									<div class="box input">
 										<input type="text" maxlength="50" name="userAddr" id="sample6_extraAddress" placeholder="참고항목">
 									</div>
 								</div>
 							</div>
 						</div>
+						<!-- TEL -->
+						<div class="box row">
+							<div class="joinLabel">
+								<label for="userTel"><span>TEL</span></label>
+							</div>
+							<div class="box input">
+								<input onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="11" type="text" name="userTel" id="userTel" placeholder="(-)없이 숫자만 입력해주세요." />
+							</div>
+						</div>
+						<!-- E-MAIL -->
+						<div class="box row">
+							<div class="joinLabel">
+								<label for="userEmail"><span>E-MAIL</span></label>
+							</div>
+							<div class="box input">
+								<input type="text" name="userEmail" id="userEmail" placeholder="이메일 (선택사항)"/>
+							</div>
+						</div>
+						
 					</div>
-	                <div class="box row">
-	                     <div class="joinLabel">
-	                        <label for="userTel"><span>TEL</span></label>
-	                     </div>
-	                     <div class="box input">
-	                        <input onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="11" type="text" name="userTel" id="userTel" placeholder="(-)없이 숫자만 입력해주세요."/>
-	                     </div>
-	                  </div>
-	                  <div class="box row">
-	                     <div class="joinLabel">
-	                        <label for="userEmail"><span>E-MAIL</span></label>
-	                     </div>
-	                     <div class="box input">
-	                        <input type="text" name="userEmail" id="userEmail" placeholder="이메일 (선택사항)"/>
-	                     </div>
-	                  </div>
-	                </div>
-	            </div>
-	    
-	    <!-- form안에 넣어줘야 JOIN버튼을 눌렀을 때 가지고 감 -->
-        <input type="hidden" name="mode" value="${mode }"/>
-		<c:if test="${mode=='insert' }">
-			<div align="center">
-				<div style="float: left; padding-left: 370px; padding-right: 10px;">	
+					<input type="hidden" name="mode" value="${mode }" />
+				</form>
+			</div>
+				
+			<!-- join -->
+			<c:if test="${mode=='insert' }">
+				<div align="center">
 					<button class="add_button" type="button" style="width: 170px;" onclick="javascript:history.back();">
-						<a style=" font-size: 8px; color: #484848;">BACK</a>
+						<span style="font-size: 8px; color: #484848;">BACK</span>
+					</button>
+					<button class="add_button" type="button" style="width: 170px;" onclick="sendIt();">
+						<span style="font-size: 8px; color: #484848;">JOIN</span>
 					</button>
 				</div>
-				
-				<div style="float: left;">
-					<button class="add_button" type="button" style="width: 170px;" onclick="sendIt();">
-						<a style=" font-size: 8px; color: #484848;">JOIN</a>
-					</button>	
-				</div>
-			</div>
-		</c:if>
-		<c:if test="${mode=='update' }">
-			<button
-			style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;"
-			type="button" onclick="javascript:history.back();"
-			onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
-			<a style="font-size: 8px; color: #484848;">BACK</a>
-			</button>
-	
-			<button
-				style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;"
-				type="button" onclick="sendIt();"
-				onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
-				<a style="font-size: 8px; color: #484848;">완료</a>
-			</button>
+			</c:if>
 			
-			<button
-				style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;"
-				type="button" onclick="javascript:location.href='<%=cp%>/shop/member/delete.do';"
-				onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
-				<a style="font-size: 8px; color: #484848;">회원탈퇴</a>
-			</button>
-		</c:if>
-	            
-		</form>
-		
+			<!-- update -->
+			<c:if test="${mode=='update' }">
+				<button style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 110px; line-height: 48px;"
+					type="button" onclick="javascript:history.back();"
+					onmouseover="this.style.backgroundColor='#F0F0F0';"
+					onmouseout="this.style.backgroundColor='white';">
+					<span style="font-size: 8px; color: #484848;">BACK</span>
+				</button>
+				<button
+					style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 110px; line-height: 48px;"
+					type="button" onclick="sendIt();"
+					onmouseover="this.style.backgroundColor='#F0F0F0';"
+					onmouseout="this.style.backgroundColor='white';">
+					<span style="font-size: 8px; color: #484848;">완료</span>
+				</button>
+				<button
+					style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 110px; line-height: 48px;"
+					type="button"
+					onclick="javascript:location.href='<%=cp%>/member/withdraw.action';"
+					onmouseover="this.style.backgroundColor='#F0F0F0';"
+					onmouseout="this.style.backgroundColor='white';">
+					<span style="font-size: 8px; color: #484848;">회원탈퇴</span>
+				</button>
+			</c:if>
+		</div>
 		
 	</div>
-</div>
-   
-
 </body>
 </html>
