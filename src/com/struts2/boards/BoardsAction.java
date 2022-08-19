@@ -65,7 +65,7 @@ public class BoardsAction extends ActionSupport
 	}
 	
 	public String list() throws Exception{
-		System.out.println("ㅠㅠ");
+		
 		CommonDAO dao = CommonDAOImpl.getInstance();
 		
 		MyPage myPage = new MyPage();
@@ -142,8 +142,8 @@ public class BoardsAction extends ActionSupport
 					URLEncoder.encode(dto.getSearchValue(),"UTF-8");
 		}
 		
-		urlList = cp + "/mini/list.action";
-		urlView = cp + "/mini/view.action?pageNum=" + currentPage;
+		urlList = cp + "/mini/boards/list.action";
+		urlView = cp + "/mini/boards/view.action?pageNum=" + currentPage;
 		
 		if(!param.equals("")) {
 			urlList += "?" + param;
@@ -270,7 +270,7 @@ public class BoardsAction extends ActionSupport
 			//부모 데이터를 변경해서 답변데이터로 write.jsp에 출력
 			dto.setSubject("[답변]" + dto.getSubject());
 			dto.setContent(dto.getContent() + temp);
-			dto.setName("");
+			dto.setUserId("");
 			dto.setEmail("");
 			dto.setPwd("");
 			
