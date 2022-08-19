@@ -34,7 +34,7 @@
 	
 		<action name="find" class="com.struts2.member.MemberAction" method="find">
 			<result name="input">/struts2/member/find.jsp</result>
-			<result name="success" type="redirectAction">login</result>
+			<result name="success">/struts2/member/login.jsp</result>
 		</action>
 	
 		<action name="myPage" class="com.struts2.member.MemberAction" method="myPage">
