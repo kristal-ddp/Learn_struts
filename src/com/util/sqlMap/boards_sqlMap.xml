@@ -6,7 +6,7 @@
 <typeAlias alias="BoardsDTO" type="com.struts2.boards.BoardsDTO"/>
 
 	<sql id="column">
-		BOARDNUM, USERID, SUBJECT, CONTENT, POSTDATE, HITS
+		BOARDNUM, USERID, SUBJECT, CONTENT, POSTDATE, HITCOUNT
 	</sql>
 	
 	<sql id="input-column">
@@ -39,7 +39,7 @@
 
 	<!-- 조회수 증가 -->
 	<update id="hitCount" parameterClass="int">
-		UPDATE BOARDS SET HITS = HITS + 1
+		UPDATE BOARDS SET HITCOUNT = HITCOUNT + 1
 			WHERE BOARDNUM = #boardNum#
 	</update>
 

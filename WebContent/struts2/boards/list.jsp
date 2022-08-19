@@ -49,23 +49,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:if test="${empty list }">
+					<c:if test="${empty lists }">
 						<tr>
 							<td colspan="5" class="empty">등록된 글이 없습니다.</td>
 						</tr>
 					</c:if>
-					<c:forEach var="dto" items="${list }">
+					<c:forEach var="dto" items="${lists }">
 						<tr>
 							<!-- NO -->
 							<td>${dto.boardNum }</td>
 							<!-- SUBJECT -->
-							<td><a href="${viewUrl }&boardNum=${dto.boardNum}">${dto.subject }</a></td>
+							<td><a href="${urlView }&boardNum=${dto.boardNum}">${dto.subject }</a></td>
 							<!-- ID -->
 							<td>${dto.userId }</td>
 							<!-- DATE -->
-							<td>${dto.postDate }</td>
+							<td>${dto.postdate }</td>
 							<!-- HITS -->
-							<td>${dto.hits }</td>
+							<td>${dto.hitCount }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -98,7 +98,7 @@
 			</div>
 			
 			<div class="elementRight" style="float: right;">
-				<a href="<%=cp %>/write.action" class="element">WRITE</a>
+				<a href="<%=cp %>/boards/write.action" class="element">WRITE</a>
 			</div>
 		</div>
 	</div>
