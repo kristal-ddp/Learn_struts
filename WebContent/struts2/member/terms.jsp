@@ -10,9 +10,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>이용약관</title>
 
-<link rel="stylesheet" type="text/css" href="<%=cp%>/css/shopStyle.css"/>
-<link rel="stylesheet" type="text/css" href="<%=cp%>/member/css/style.css">
-<link rel="stylesheet" type="text/css" href="<%=cp%>/member/css/member.css" />
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/shopStyle.css"/>
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/style.css">
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/member.css" />
+
 
 <script type="text/javascript">
 	function chk() {
@@ -22,7 +23,7 @@
 	
 		 if(req1 == true && req2 == true){
 			 
-			location.href = "<%=cp%>/member.do?method=join";
+			location.href = "<%=cp%>/member/join.action";
 			
 		 }else{
 			 
@@ -51,26 +52,27 @@
 </script>
 
 </head>
-<body>
-
+<body>>
+	<jsp:include page="./header.jsp" />
 	<div id="content" align="center">
-		<div class="joinTitle" align="center"
-			style="font-weight: 700; padding-top: 15px; font: 10pt;">회원가입</div>
+		<div class="joinTitle" align="center" style="font-weight: 700; padding-top: 15px; font: 10pt;">회원가입</div>
 
+		<!-- terms -->
 		<form action="" name="form" method="post">
 			<table class="joinCheck" width="600" height="580">
 				<tr>
 					<td width="100%" height="50%" align="center">
 						<ul class="terms_bx_list">
-							<li class="terms_bx"><span class="input_chk"> <input
-									type="checkbox" id="termsService" name="req1" class="chk">
-									<label for="termsService"
-									style="font: 8pt; vertical-align: middle;">Kristal 이용약관
-										동의 <span class="terms_necessary">(필수)</span>
-								</label>
-							</span>
-								<div class="terms_box" tabindex="0" id="divService">
-									<!-- Kristal 이용약관 동의 -->
+							<li class="terms_bx">
+								<span class="input_chk">
+									<input type="checkbox" id="termsService" name="req1" class="chk">
+									<label for="termsService" style="font: 8pt; vertical-align: middle;">
+										Kristal 이용약관 동의
+										<span class="terms_necessary">(필수)</span>
+									</label>
+								</span>
+								<!-- Kristal 이용약관 동의 -->
+								<div class="terms_box" id="divService">
 									<div class="article">
 										<h3 class="article__title">여러분을 환영합니다.</h3>
 										<p class="article__text">Kristal 서비스 및 제품(이하 ‘서비스’)을 이용해
@@ -106,8 +108,7 @@
 											있습니다. 이러한 내용은 각각의 해당 서비스 초기 화면에서 확인해 주시기 바랍니다.</p>
 									</div>
 									<div class="article">
-										<h3 class="article__title">회원으로 가입하시면 Kristal 서비스를 보다
-											편리하게 이용할 수 있습니다.</h3>
+										<h3 class="article__title">회원으로 가입하시면 Kristal 서비스를 보다 편리하게 이용할 수 있습니다.</h3>
 										<p class="article__text">
 											여러분은 본 약관을 읽고 동의하신 후 회원 가입을 신청하실 수 있으며, Kristal는 이에 대한 승낙을 통해
 											회원 가입 절차를 완료하고 여러분께 Kristal 서비스 이용 계정(이하 ‘계정’)을 부여합니다. 계정이란
@@ -419,16 +420,18 @@
 											1588 – 3820/ 평일 09:00~18:00)로 문의 주시기 바랍니다.
 										</p>
 									</div>
-								</div></li>
-							<li class="terms_bx"><span class="input_chk"> <input
-									type="checkbox" id="termsPrivacy" name="req2" class="chk">
-									<label for="termsPrivacy" class="collect_personal"
-									style="vertical-align: middle;">개인정보 수집 및 이용 동의<span
-										class="terms_choice">(필수)</span></label> <a href="#" id="termForChild"
-									class="easy_guide" role="button" target="_blank"></a>
-							</span>
-								<div class="terms_box" tabindex="0" id="divPrivacy">
-									<!-- 개인정보 수집 및 이용에 대한 안내 -->
+								</div>
+							</li>
+							<li class="terms_bx">
+								<span class="input_chk">
+									<input type="checkbox" id="termsPrivacy" name="req2" class="chk">
+									<label for="termsPrivacy" class="collect_personal" style="vertical-align: middle;">
+										개인정보 수집 및 이용 동의
+										<span class="terms_choice">(필수)</span>
+									</label>
+								</span>
+								<!-- 개인정보 수집 및 이용에 대한 안내 -->
+								<div class="terms_box" id="divPrivacy">
 									<div class="policy_summary">
 										<p class="policy_summary__text" style="font: 12pt;">개인정보보호법에
 											따라 Kristal에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적,
@@ -572,16 +575,18 @@
 											있습니다. 회원가입 시 수집하는 최소한의 개인정보, 즉, 필수 항목에 대한 수집 및 이용 동의를 거부하실
 											경우, 회원가입이 어려울 수 있습니다.</p>
 									</div>
-								</div></li>
-							<li class="terms_bx"><span class="input_chk"> <input
-									type="checkbox" id="termsLocation" name="req3" value="Y"
-									class="chk"> <label for="termsLocation"
-									style="vertical-align: middle;">위치기반서비스 이용약관 동의<span
-										class="terms_choice terms_no">(선택)</span>
-								</label>
-							</span> <!-- tg-lang=>"ko" -->
+								</div>
+							</li>
+							<li class="terms_bx">
+								<span class="input_chk">
+									<input type="checkbox" id="termsLocation" name="req3" value="Y" class="chk">
+									<label for="termsLocation" style="vertical-align: middle;">
+										위치기반서비스 이용약관 동의
+										<span class="terms_choice terms_no">(선택)</span>
+									</label>
+								</span> <!-- tg-lang=>"ko" -->
+								<!-- 위치정보 이용약관 동의 -->
 								<div class="terms_box" id="divLocation">
-									<!-- 위치정보 이용약관 동의 -->
 									<div class="policy_summary">
 										<p class="policy_summary__text">
 											위치기반서비스 이용약관에 동의하시면, <strong>위치를 활용한 광고 정보 수신 등을
@@ -779,32 +784,29 @@
 												5월 18일부터 적용됩니다.</li>
 										</ol>
 									</div>
-								</div> <!-- tg-lang --></li>
+								</div> <!-- tg-lang -->
+							</li>
 						</ul>
 					</td>
 				</tr>
 			</table>
-
-			<span class="input_chk">
-				<input type='checkbox' name='selectall' value='selectall' onclick='selectAll(this)'/>
-				<label for="termsService" style="font: 8pt; vertical-align: middle;">전체 이용약관 동의 </label>
-			</span>
-
-			<div align="center">
-				<div style="float: left; padding-left: 370px; padding-right: 10px;">
-					<button class="add_button" type="button" style="width: 170px;" onclick="chk();">
-						<a style="font-size: 8px; color: #484848;">동의</a>
-					</button>
-				</div>
-				<div style="float: left;">
-					<button class="add_button" type="button" style="width: 170px;" onclick="nochk();">
-						<a style="font-size: 8px; color: #484848;">비동의</a>
-					</button>
-				</div>
-			</div>
 		</form>
+			
+		<!-- selectAll -->
+		<span class="input_chk">
+			<input type='checkbox' id="selectall" name='selectall' value='selectall' onclick='selectAll(this)'/>
+			<label for="selectall" style="font: 8pt; vertical-align: middle;">전체 이용약관 동의</label>
+		</span>
+		
+		<!-- button -->
+		<div align="center">
+			<button class="add_button" type="button" style="width: 170px;" onclick="chk();">
+				<span style="font-size: 8px; color: #484848;">동의</span>
+			</button>
+			<button class="add_button" type="button" style="width: 170px;" onclick="nochk();">
+				<span style="font-size: 8px; color: #484848;">비동의</span>
+			</button>
+		</div>
 	</div>
-
 </body>
-
 </html>

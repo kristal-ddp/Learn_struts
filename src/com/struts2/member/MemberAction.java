@@ -1,6 +1,7 @@
 package com.struts2.member;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -13,7 +14,7 @@ import com.util.dao.CommonDAOImpl;
 public class MemberAction extends ActionSupport implements Preparable, ModelDriven<MemberDTO> {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private MemberDTO dto;
 
 	public MemberDTO getDto() {
@@ -32,111 +33,226 @@ public class MemberAction extends ActionSupport implements Preparable, ModelDriv
 
 	String userId = "";
 	MemberDTO sessionMemberDTO;
-	
+
+	// 로그인 정보 불러오기
 	public MemberAction() {
 		HttpServletRequest request = ServletActionContext.getRequest();
-		
+
 		String sessionUserId = (String) request.getSession().getAttribute("userId");
 		if (sessionUserId != null && !sessionUserId.equals("")) {
 			userId = sessionUserId;
 		}
 	}
 
-	private String terms() throws Exception{
-		
-		if (!userId.equals("")) {
-			return ERROR;
-		}
-		
-		return SUCCESS;
-		
-	}
-	
-	private String join() throws Exception{
+	// 이용약관
+	public String terms() throws Exception {
 
 		if (!userId.equals("")) {
-			return ERROR;
+			return "myPage";
+		}
+
+		return SUCCESS;
+
+	}
+
+	// 회원가입
+	public String join() throws Exception {
+
+		if (!userId.equals("")) {
+			return "myPage";
 		}
 
 		HttpServletRequest request = ServletActionContext.getRequest();
+		CommonDAO dao = CommonDAOImpl.getInstance();
 		
+		// 회원가입
 		if (dto == null || dto.getMode() == null || dto.getMode().equals("")) {
-			request.setAttribute("mode", "join");
+			request.setAttribute("mode", "insert");
+			return INPUT;
+		}
+		
+		dao.insertData("member.insert", dto);
+
+		request.setAttribute("userName", dto.getUserName());
+		
+		return SUCCESS;
+
+	}
+
+	// 회원가입 완료
+	public String join_result() throws Exception {
+
+		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		String userName = request.getParameter("userName");
+		
+		request.setAttribute("userName", userName);
+		
+		return SUCCESS;
+
+	}
+
+	// 로그인
+	public String login() throws Exception {
+
+		if (!userId.equals("")) {
+			return "myPage";
+		}
+
+		HttpServletRequest request = ServletActionContext.getRequest();
+		CommonDAO dao = CommonDAOImpl.getInstance();
+
+		// 로그인
+		if (dto == null || dto.getUserId() == null) {
+
+			request.setAttribute("mode", "loin");
+
+			return INPUT;
+
+		}
+		
+		String userId = (String) dao.getReadData("member.login", dto);
+
+		// 로그인 실패
+		if (userId == null) {
+			String message = "비밀번호가 일치하지 않습니다.";
+			request.setAttribute("message", message);
 			return INPUT;
 		}
 
+		request.getSession().setAttribute("userId", userId);
+
+		return SUCCESS;
+
+	}
+
+	// 로그아웃
+	public String logout() throws Exception {
+
+		HttpSession session = ServletActionContext.getRequest().getSession();
+
+		session.removeAttribute("userId");
+		session.invalidate();
+
+		return SUCCESS;
+
+	}
+
+	// 아이디, 비밀번호 찾기
+	public String find() throws Exception {
+
+		if (!userId.equals("")) {
+			return "myPage";
+		}
+
+		HttpServletRequest request = ServletActionContext.getRequest();
 		CommonDAO dao = CommonDAOImpl.getInstance();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		return SUCCESS;
-		
-	}
 
-	private String login() throws Exception{
-
-		if (!userId.equals("")) {
-			return ERROR;
+		String str = request.getParameter("message");
+		String message = "";
+		
+		if (str != null) {
+			message = str;
 		}
-		
-		
-		
-		return SUCCESS;
-		
-	}
 
-	private String logout() throws Exception{
-		
-		return SUCCESS;
-		
-	}
+		// 에러
+		if (dto == null || dto.getMode() == null || dto.getMode().equals("") || message.equals("")) {
+			
+			return INPUT;
 
-	private String find() throws Exception{
+			// 아이디 찾기
+		} else if (dto.getMode().equals("findId")) {
 
-		if (!userId.equals("")) {
-			return ERROR;
+			String userId = (String) dao.getReadData("member.findId", dto);
+
+			if (userId != null && userId.equals(""))
+				message = "아이디는 [" + userId + "] 입니다.";
+
+			else {
+				message = "아이디가 존재하지 않습니다.";
+				request.setAttribute("message", message);
+				return INPUT;
+			}
+
+			// 비밀번호 찾기
+		} else if (dto.getMode().equals("findPwd")) {
+
+			String userPwd = (String) dao.getReadData("member.findPwd", dto);
+
+			if (userPwd != null && userPwd.equals(""))
+				message = "비밀번호는 [" + userPwd + "] 입니다.";
+
+			else {
+				message = "일치하는 정보가 존재하지 않습니다.";
+				request.setAttribute("message", message);
+				return INPUT;
+			}
+
 		}
-		
-		
-		
+
+		request.setAttribute("message", message);
+		request.setAttribute("mode", "loin");
+
 		return SUCCESS;
-		
+
 	}
 
-	private String myPage() throws Exception{
+	// 마이 페이지
+	public String myPage() throws Exception {
 
 		if (userId.equals("")) {
-			return ERROR;
+			return LOGIN;
 		}
-		
-		
-		
+
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("userId", userId);
+
 		return SUCCESS;
-		
+
 	}
 
-	private String withdraw() throws Exception{
+	// 회원 정보 수정
+	public String update() throws Exception {
+
+		if (userId.equals("")) {
+			return LOGIN;
+		}
+
+		System.out.println("asd");
+		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		CommonDAO dao = CommonDAOImpl.getInstance();
+
+		if (dto == null || dto.getMode() == null || dto.getMode().equals("")) {
+
+			MemberDTO dto = (MemberDTO) dao.getReadData("member.readData", userId);
+
+			request.setAttribute("dto", dto);
+			request.setAttribute("mode", "update");
+
+			return INPUT;
+
+		}
+
+		return SUCCESS;
+
+	}
+
+	// 회원 탈퇴
+	public String withdraw() throws Exception {
 
 		if (!userId.equals("")) {
-			return ERROR;
+			return LOGIN;
 		}
-		
-		
-		
+
 		return SUCCESS;
-		
+
 	}
 
-	private String temp() throws Exception{
-		
+	public String temp() throws Exception {
+
 		return SUCCESS;
-		
+
 	}
-	
+
 }
