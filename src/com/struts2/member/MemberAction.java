@@ -113,6 +113,8 @@ public class MemberAction extends ActionSupport implements Preparable, ModelDriv
 		
 		String userId = (String) dao.getReadData("member.login", dto);
 
+		System.out.println("userId : " + userId);
+		
 		// 로그인 실패
 		if (userId == null) {
 			String message = "비밀번호가 일치하지 않습니다.";
@@ -157,8 +159,6 @@ public class MemberAction extends ActionSupport implements Preparable, ModelDriv
 
 		// 에러
 		if (dto == null || dto.getMode() == null || dto.getMode().equals("") || message.equals("")) {
-			
-			return INPUT;
 
 			// 아이디 찾기
 		} else if (dto.getMode().equals("findId")) {
