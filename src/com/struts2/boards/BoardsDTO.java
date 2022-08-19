@@ -10,13 +10,12 @@ public class BoardsDTO {
 	private String email;
 	private String subject;
 	private String content;
-	private String ipAddr;
 	private int groupNum;
 	private int depth;
 	private int orderNum;
 	private int parent;
 	private int hitCount;
-	private String postdate;
+	private String postDate;
 	
 	private String searchKey;
 	private String searchValue;
@@ -80,14 +79,6 @@ public class BoardsDTO {
 		this.content = content;
 	}
 
-	public String getIpAddr() {
-		return ipAddr;
-	}
-
-	public void setIpAddr(String ipAddr) {
-		this.ipAddr = ipAddr;
-	}
-
 	public int getGroupNum() {
 		return groupNum;
 	}
@@ -128,12 +119,12 @@ public class BoardsDTO {
 		this.hitCount = hitCount;
 	}
 
-	public String getPostdate() {
-		return postdate;
+	public String getPostDate() {
+		return postDate;
 	}
 
-	public void setPostdate(String postdate) {
-		this.postdate = postdate;
+	public void setPostDate(String postDate) {
+		this.postDate = postDate;
 	}
 
 	public String getSearchKey() {

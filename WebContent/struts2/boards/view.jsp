@@ -13,13 +13,38 @@
 <link rel="stylesheet" type="text/css"href="<%=cp%>/boards/css/boardsStyle.css" />
 <link rel="stylesheet" type="text/css" href="<%=cp %>/boards/css/viewStyle.css"/>
 
+<script type="text/javascript">
+
+function sendData(value) {
+	
+	var boardNum = "${dto.boardNum }";
+	var pageNum = "${dto.pageNum }";
+	
+	var url = "<%=cp %>/boards/";
+	
+	if(value=="update")
+		url += "update.action?";
+	else if(value=="delete")
+		url += "delete.action?";
+	else if(value=="reply")
+		url += "reply.action?";
+	
+	url += "boardNum=" + boardNum;
+	url += "&${params }";//검색을 했을 경우 searchKey, searchValue가 붙음
+	
+	location.replace(url);
+	
+}
+
+</script>
+
 </head>
 <body>
 	<div id="content" align="center">
 		<!-- board -->
 		<div class="boardList">
 			<!-- title -->
-			<div class="boardTitle" align="center">VIEW</div>
+			<div class="boardTitle" align="center">BOARD</div>
 			<!-- content -->
 			<div class="boardContent" align="center">
 				<div class="">
@@ -42,6 +67,10 @@
 									<!-- POSTDATE -->
 									<div class="name">DATE
 										<p>${dto.postDate }</p>
+									</div>
+									<!-- HITCOUNT -->
+									<div class="name">HITS
+										<p>${dto.hitCount }</p>
 									</div>
 								</td>
 							</tr>
@@ -67,20 +96,37 @@
 						</tbody>
 					</table>
 				</div>
+				<div class="bbsArticle_bottomLine">
+					BEFORE:
+					<c:if test="${!empty preSubject }">
+						<a
+							href="<%=cp %>/boards/view.action?${params}&boardNum=${preBoardNum}">
+							${preSubject } </a>
+					</c:if>
+				</div>
+				<div class="bbsArticle_noLine">
+					AFTER:
+					<c:if test="${!empty nextSubject }">
+						<a
+							href="<%=cp %>/boards/view.action?${params}&boardNum=${nextBoardNum}">
+							${nextSubject } </a>
+					</c:if>
+				</div>
 				<div class="button">
 					<input type="hidden" name="searchParam" value="${searchParam }">
 					<div class="elementLeft">
-						<a href="${listUrl }">LIST</a>
+						<a href="#none" class="element"
+						onclick="location.href='<%=cp%>/boards/list.action?${params }';">LIST</a>
+						<a href="#none" onclick="sendData('reply')" class="element">REPLY</a>
 					</div>
-					<c:if test="${dto.userId == userId }">
+					<%-- <c:if test="${dto.userId == userId }"> --%>
 						<div class="elementRight">
-							<a href="<%=cp %>/boards.do?method=write&mode=update${paramView }" class="element">EDIT</a>
-							<a href="<%=cp %>/boards.do?method=boards_ok&mode=delete${paramView }" class="element">DELETE</a>
+							<a href="#none" onclick="sendData('update')" class="element">EDIT</a>
+							<a href="#none" onclick="sendData('delete')" class="element">DELETE</a>
 						</div>
-					</c:if>
+					<%-- </c:if> --%>
 				</div>
 			</div>
-	
 		</div>
 	</div>
 </body>
