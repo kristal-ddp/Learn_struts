@@ -17,7 +17,7 @@
 	function sendIt() {
 		var f = document.searchForm;
 		
-		f.action = "/mini/list.action";
+		f.action = "/mini/boards/list.action";
 		f.submit();
 	}
 
