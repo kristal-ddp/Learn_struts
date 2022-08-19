@@ -6,11 +6,11 @@
 <struts-config>
 
 	<form-beans>
-		<form-bean name="memberForm" type="com.member.MemberForm"/>
+		<form-bean name="memberForm" type="com.struts1.member.MemberForm"/>
 	</form-beans>
 
 	<action-mappings>
-		<action path="/member" type="com.member.MemberAction" name="memberForm"
+		<action path="/member" type="com.struts1.member.MemberAction" name="memberForm"
 		scope="request" parameter="method">
 			<forward name="terms" path="/member/terms.jsp"></forward>
 			<forward name="join" path="/member/join.jsp"></forward>
