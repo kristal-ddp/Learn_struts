@@ -37,7 +37,13 @@
 		}
 		f.content.value = str;
 		
-		f.action = "/mini/boards.do?method=boards_ok";
+		if(f.mode.value=="create")
+			f.action="<%=cp %>/boards/write.action";
+		else if(f.mode.value=="update")
+			f.action="<%=cp %>/boards/update.action";
+		else if(f.mode.value=="reply")
+			f.action="<%=cp %>/boards/reply.action";
+			
 		f.submit();
 		
 	}
@@ -64,27 +70,49 @@
 					</div>
 				</div>
 				<div class="box row" align="center">
-					<!-- hidden -->
+					<!-- UPDATE -->
 					<input type="hidden" name="boardNum" value="${dto.boardNum }">
-					<input type="hidden" name="searchParam" value="${searchParam }">
 					<input type="hidden" name="pageNum" value="${pageNum }">
+										
+					<!-- REPLY -->
+					<input type="hidden" name="groupNum" value="${dto.groupNum }"/>
+					<input type="hidden" name="orderNum" value="${dto.orderNum }"/>
+					<input type="hidden" name="depth" value="${dto.depth }"/>
+					<input type="hidden" name="parent" value="${dto.boardNum }"/>
+					
+					<input type="hidden" name="searchParam" value="${searchParam }">
 					<input type="hidden" name="mode" value="${mode }">
-					<!-- write -->
-					<c:if test="${mode == 'insert' }">
-						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 30px;">
-							<a href="${refererUrl }">CANCEL</a>
-						</div>
+					<!-- WRITE -->
+					<c:if test="${mode == 'write' }">-
 						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 10px;">
 							<a href="javascript:sendIt();">REGISTER</a>
+						</div>
+						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 10px;">
+							<input type="reset" value="RETYPE" class="btn2" onclick="document.myForm.subject.focus();"/>
+						</div>
+						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 30px;">
+							<a href="#none" onclick="location.href='<%=cp%>/boards/list.action?pageNum=${pageNum }';">CANCEL</a>
 						</div>
 					</c:if>
-					<!-- update -->
+					<!-- UPDATE -->
 					<c:if test="${mode == 'update' }">
-						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 30px;">
-							<a href="${refererUrl }">CANCEL</a>
-						</div>
 						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 10px;">
 							<a href="javascript:sendIt();">REGISTER</a>
+						</div>
+						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 30px;">
+							<a href="#none" onclick="history.back();">CANCEL</a>
+						</div>
+					</c:if>
+					<!-- REPLY -->
+					<c:if test="${mode == 'reply' }">
+						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 10px;">
+							<a href="javascript:sendIt();">REGISTER</a>
+						</div>
+						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 10px;">
+							<input type="reset" value="RETYPE" class="btn2" onclick="document.myForm.subject.focus();"/>
+						</div>
+						<div style="border: 1px solid; width: 50px; padding: 5px; float: right; margin-right: 30px;">
+							<a href="#none" onclick="history.back();">CANCEL</a>
 						</div>
 					</c:if>
 				</div>

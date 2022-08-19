@@ -37,33 +37,6 @@ public class BoardsAction extends ActionSupport
 		dto = new BoardsDTO();
 	}
 	
-	public String write() throws Exception{
-		
-		HttpServletRequest request = ServletActionContext.getRequest();
-		
-		if(dto==null || dto.getMode()==null || dto.getMode().equals("")) {
-			
-			request.setAttribute("mode", "write");
-			
-			return INPUT;
-		}
-		
-		CommonDAO dao = CommonDAOImpl.getInstance();
-		
-		int maxBoardNum = dao.getIntValue("boards.maxBoardNum");
-		
-		dto.setBoardNum(maxBoardNum + 1);
-		dto.setIpAddr(request.getRemoteAddr());
-		dto.setGroupNum(dto.getBoardNum());//maxBoardNum + 1로 넣어도 됨
-		dto.setDepth(0);
-		dto.setOrderNum(0);
-		dto.setParent(0);
-		
-		dao.insertData("boards.insertData", dto);
-		
-		return SUCCESS;
-	}
-	
 	public String list() throws Exception{
 		
 		CommonDAO dao = CommonDAOImpl.getInstance();
@@ -142,8 +115,8 @@ public class BoardsAction extends ActionSupport
 					URLEncoder.encode(dto.getSearchValue(),"UTF-8");
 		}
 		
-		urlList = cp + "/mini/boards/list.action";
-		urlView = cp + "/mini/boards/view.action?pageNum=" + currentPage;
+		urlList = cp + "/boards/list.action";
+		urlView = cp + "/boards/view.action?pageNum=" + currentPage;
 		
 		if(!param.equals("")) {
 			urlList += "?" + param;
@@ -232,6 +205,43 @@ public class BoardsAction extends ActionSupport
 		
 	}
 	
+	public String write() throws Exception{
+		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		String userId = "";
+		String sessionUserId = (String) request.getSession().getAttribute("userId");
+		
+		if (sessionUserId != null && !sessionUserId.equals("")) {
+			userId = sessionUserId;
+		}else if (sessionUserId == null || sessionUserId.equals("")) {
+			return LOGIN;
+		}
+		
+		dto.setUserId(userId);//return INPUT 가기전에 적어줘야 userId가 출력됨
+		
+		if(dto==null || dto.getMode()==null || dto.getMode().equals("")) {
+			
+			request.setAttribute("mode", "write");
+			
+			return INPUT;
+		}
+		
+		CommonDAO dao = CommonDAOImpl.getInstance();
+		
+		int maxBoardNum = dao.getIntValue("boards.maxBoardNum");
+		
+		dto.setBoardNum(maxBoardNum + 1);
+		dto.setGroupNum(dto.getBoardNum());//maxBoardNum + 1로 넣어도 됨
+		dto.setDepth(0);
+		dto.setOrderNum(0);
+		dto.setParent(0);
+		
+		dao.insertData("boards.insertData", dto);
+		
+		return SUCCESS;
+	}
+	
 	public String update() throws Exception{
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -292,7 +302,6 @@ public class BoardsAction extends ActionSupport
 		int maxBoardNum = dao.getIntValue("boards.maxBoardNum");
 		
 		dto.setBoardNum(maxBoardNum + 1);
-		dto.setIpAddr(request.getRemoteAddr());
 		dto.setDepth(dto.getDepth() + 1);
 		dto.setOrderNum(dto.getOrderNum() + 1);
 		
