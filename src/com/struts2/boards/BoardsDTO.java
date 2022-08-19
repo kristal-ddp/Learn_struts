@@ -5,7 +5,7 @@ public class BoardsDTO {
 	private int listNum;
 	
 	private int boardNum;
-	private String name;
+	private String userId;
 	private String pwd;
 	private String email;
 	private String subject;
@@ -16,7 +16,7 @@ public class BoardsDTO {
 	private int orderNum;
 	private int parent;
 	private int hitCount;
-	private String created;
+	private String postdate;
 	
 	private String searchKey;
 	private String searchValue;
@@ -40,12 +40,12 @@ public class BoardsDTO {
 		this.boardNum = boardNum;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getPwd() {
@@ -128,12 +128,12 @@ public class BoardsDTO {
 		this.hitCount = hitCount;
 	}
 
-	public String getCreated() {
-		return created;
+	public String getPostdate() {
+		return postdate;
 	}
 
-	public void setCreated(String created) {
-		this.created = created;
+	public void setPostdate(String postdate) {
+		this.postdate = postdate;
 	}
 
 	public String getSearchKey() {
