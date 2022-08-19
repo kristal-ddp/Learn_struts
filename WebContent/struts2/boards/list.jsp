@@ -17,7 +17,7 @@
 	function sendIt() {
 		var f = document.searchForm;
 		
-		f.action = "/mini/boards.do?method=list";
+		f.action = "/mini/list.action";
 		f.submit();
 	}
 
@@ -98,7 +98,7 @@
 			</div>
 			
 			<div class="elementRight" style="float: right;">
-				<a href="<%=cp %>/boards.do?method=write" class="element">WRITE</a>
+				<a href="<%=cp %>/write.action" class="element">WRITE</a>
 			</div>
 		</div>
 	</div>

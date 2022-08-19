@@ -37,20 +37,20 @@ public class BoardsAction extends ActionSupport
 		dto = new BoardsDTO();
 	}
 	
-	public String created() throws Exception{
+	public String write() throws Exception{
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		
 		if(dto==null || dto.getMode()==null || dto.getMode().equals("")) {
 			
-			request.setAttribute("mode", "create");
+			request.setAttribute("mode", "write");
 			
 			return INPUT;
 		}
 		
 		CommonDAO dao = CommonDAOImpl.getInstance();
 		
-		int maxBoardNum = dao.getIntValue("board.maxBoardNum");
+		int maxBoardNum = dao.getIntValue("boards.maxBoardNum");
 		
 		dto.setBoardNum(maxBoardNum + 1);
 		dto.setIpAddr(request.getRemoteAddr());
@@ -59,7 +59,7 @@ public class BoardsAction extends ActionSupport
 		dto.setOrderNum(0);
 		dto.setParent(0);
 		
-		dao.insertData("board.insertData", dto);
+		dao.insertData("boards.insertData", dto);
 		
 		return SUCCESS;
 	}
@@ -159,15 +159,10 @@ public class BoardsAction extends ActionSupport
 		
 	}
 	
-	public String article() throws Exception{
+	public String view() throws Exception{
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		CommonDAO dao = CommonDAOImpl.getInstance();
-		
-		/*System.out.println(dto.getSearchKey() + "-------");
-		System.out.println(dto.getSearchValue());
-		System.out.println(dto.getPageNum());
-		System.out.println(dto.getBoardNum());*/
 		
 		//dto의 값을 미리 변수에 담아놓고 사용
 		String searchKey = dto.getSearchKey();
@@ -184,9 +179,9 @@ public class BoardsAction extends ActionSupport
 			searchValue = URLDecoder.decode(searchValue, "UTF-8");
 		}
 		
-		dao.updateData("board.hitCountUpdate", boardNum);
+		dao.updateData("boards.hitCount", boardNum);
 		
-		dto = (BoardsDTO)dao.getReadData("board.readData", boardNum);
+		dto = (BoardsDTO)dao.getReadData("boards.readData", boardNum);
 		
 		int lineSu = dto.getContent().split("\r\n").length;
 		
@@ -198,7 +193,7 @@ public class BoardsAction extends ActionSupport
 		hMap.put("groupNum", dto.getGroupNum());
 		hMap.put("orderNum", dto.getOrderNum());
 		
-		BoardsDTO preDTO = (BoardsDTO)dao.getReadData("board.preReadData", hMap);
+		BoardsDTO preDTO = (BoardsDTO)dao.getReadData("boards.preReadData", hMap);
 		int preBoardNum = 0;
 		String preSubject = "";
 		
@@ -207,7 +202,7 @@ public class BoardsAction extends ActionSupport
 			preSubject = preDTO.getSubject();
 		}
 		
-		BoardsDTO nextDTO = (BoardsDTO)dao.getReadData("board.nextReadData", hMap);
+		BoardsDTO nextDTO = (BoardsDTO)dao.getReadData("boards.nextReadData", hMap);
 		int nextBoardNum = 0;
 		String nextSubject = "";
 		
@@ -237,14 +232,14 @@ public class BoardsAction extends ActionSupport
 		
 	}
 	
-	public String updated() throws Exception{
+	public String update() throws Exception{
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		CommonDAO dao = CommonDAOImpl.getInstance();
 		
 		if(dto.getMode()==null || dto.getMode().equals("")) {
 			
-			dto = (BoardsDTO)dao.getReadData("board.readData", dto.getBoardNum());
+			dto = (BoardsDTO)dao.getReadData("boards.readData", dto.getBoardNum());
 			
 			request.setAttribute("mode", "update");
 			request.setAttribute("pageNum", dto.getPageNum());
@@ -253,7 +248,7 @@ public class BoardsAction extends ActionSupport
 			
 		}
 		
-		dao.updateData("board.updateData", dto);
+		dao.updateData("boards.updateData", dto);
 		
 		return SUCCESS;
 		
@@ -267,12 +262,12 @@ public class BoardsAction extends ActionSupport
 		if(dto==null || dto.getMode()==null || dto.getMode().equals("")) {
 			
 			//부모의 데이터 읽어옴
-			dto = (BoardsDTO)dao.getReadData("board.readData", dto.getBoardNum());
+			dto = (BoardsDTO)dao.getReadData("boards.readData", dto.getBoardNum());
 			
-			String temp = "\r\n\r\n------------------------\r\n\r\n";
+			String temp = "\r\n\r\n──────────────────\r\n\r\n";
 			temp += "[답변]\r\n";
 			
-			//부모 데이터를 변경해서 답변데이터로 created.jsp에 출력
+			//부모 데이터를 변경해서 답변데이터로 write.jsp에 출력
 			dto.setSubject("[답변]" + dto.getSubject());
 			dto.setContent(dto.getContent() + temp);
 			dto.setName("");
@@ -291,30 +286,28 @@ public class BoardsAction extends ActionSupport
 		hMap.put("groupNum", dto.getGroupNum());
 		hMap.put("orderNum", dto.getOrderNum());
 		
-		dao.updateData("board.orderNumUpdate", hMap);
+		dao.updateData("boards.orderNumUpdate", hMap);
 		
 		//답변을 입력
-		int maxBoardNum = dao.getIntValue("board.maxBoardNum");
+		int maxBoardNum = dao.getIntValue("boards.maxBoardNum");
 		
 		dto.setBoardNum(maxBoardNum + 1);
 		dto.setIpAddr(request.getRemoteAddr());
 		dto.setDepth(dto.getDepth() + 1);
 		dto.setOrderNum(dto.getOrderNum() + 1);
 		
-		dao.insertData("board.insertData", dto);
+		dao.insertData("boards.insertData", dto);
 		
 		return SUCCESS;
 		
 	}
 	
-	public String deleted() throws Exception{
+	public String delete() throws Exception{
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		CommonDAO dao = CommonDAOImpl.getInstance();
 		
-		dao.deleteData("board.deleteData", dto.getBoardNum());
-		
-		/*request.setAttribute("pageNum", dto.getPageNum());*/
+		dao.deleteData("boards.deleteData", dto.getBoardNum());
 		
 		return SUCCESS;
 		
