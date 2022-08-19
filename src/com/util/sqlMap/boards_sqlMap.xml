@@ -14,7 +14,7 @@
 	</sql>
 
 	<!-- -->
-	<select id="maxNum" resultClass="int">
+	<select id="maxBoardNum" resultClass="int">
 		SELECT NVL(MAX(BOARDNUM), 0) FROM BOARDS
 	</select>
 
@@ -49,7 +49,7 @@
 	</delete>
 
 	<!-- 리스트 -->
-	<select id="getList" resultClass="BoardsDTO" parameterClass="map">
+	<select id="listData" resultClass="BoardsDTO" parameterClass="map">
 		SELECT * FROM (
 			SELECT ROWNUM AS RNUM, DATA.* FROM (
 				SELECT <include refid="column"/>
