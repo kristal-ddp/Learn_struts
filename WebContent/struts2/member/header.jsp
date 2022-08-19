@@ -4,8 +4,8 @@
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
-<link rel="stylesheet" type="text/css" href="<%=cp %>/css/shopStyle.css"/>
-<script type="text/javascript" src="<%=cp%>/main/header.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/shopStyle.css"/>
+<%-- <script type="text/javascript" src="<%=cp%>/main/header.js"></script> --%>
 
 <div id="header" class="txt">
 	<div id="header_bg"></div>
@@ -22,12 +22,13 @@
 		</div> -->
 		<div class="right_area">
 			<c:choose>
-				<c:when test="${empty userId }">
-					<a href="/member.do?method=login">LOGIN</a>&nbsp;&nbsp;
+				<c:when test="${(empty dto.userId) && (empty userId) }">
+					<a href="<%=cp%>/member/terms.action">JOIN</a>&nbsp;&nbsp;
+					<a href="<%=cp%>/member/login.action">LOGIN</a>&nbsp;&nbsp;
 				</c:when>
-				<c:when test="${!empty userId }">
-					<a href="/member.do?method=myPage">MYPAGE</a>&nbsp;&nbsp;
-					<a href="/member.do?method=logout_ok">LOGOUT</a>&nbsp;&nbsp;
+				<c:when test="${!((empty dto.userId) && (empty userId)) }">
+					<a href="<%=cp%>/member/myPage.action">MYPAGE</a>&nbsp;&nbsp;
+					<a href="<%=cp%>/member/logout.action">LOGOUT</a>&nbsp;&nbsp;
 				</c:when>
 			</c:choose>
 		</div>

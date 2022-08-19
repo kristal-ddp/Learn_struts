@@ -10,9 +10,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
 
-<link rel="stylesheet" type="text/css"href="<%=cp%>/member/css/memberListStyle.css" />
-<link rel="stylesheet" type="text/css"href="<%=cp%>/css/shopStyle.css" />
-<link rel="stylesheet" type="text/css"href="<%=cp%>/member/css/member.css" />
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/memberListStyle.css" />
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/shopStyle.css" />
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/member.css" />
 
 <script type="text/javascript">
 	function login(){
@@ -31,7 +31,7 @@
 			return;
 		}
 		
-		f.action = "<%=cp%>/member.do?method=login_ok";
+		f.action = "<%=cp%>/member/login.action";
 		f.submit();
 		
 	}
@@ -40,80 +40,57 @@
 
 </head>
 <body>
-
-<div id="content" align="center">
-
-	<br> <br>
-		<h2>로그인</h2>
+	<jsp:include page="./header.jsp"/>
+	<div id="content" align="center">
 		<br> <br>
-	<form action="" method="post" name="myForm" class="loginForm">
-		<div id="left_area" style="display: inline-block;" >
-         	<div id="update_area">
-                <div class="box row">
-	                <div class="box label">
-	                	<label for="userId" >
-	                		<span>
-	                       		<a>MEMBER ID</a>
-	                       	</span>
-	                	</label>
+			<h2>로그인</h2>
+			<br> <br>
+		<form action="" method="post" name="myForm" class="loginForm">
+			<div id="left_area" style="display: inline-block;" >
+	         	<div id="update_area">
+	                <div class="box row">
+		                <div class="box label">
+		                	<label for="userId" >
+		                		<span>
+		                       		<a>MEMBER ID</a>
+		                       	</span>
+		                	</label>
+		                 </div>
+		                 <div class="box input">
+		                 	<input maxlength="20" type="text" name="userId" id="userId" autofocus/>
+		                 </div>
 	                 </div>
-	                 <div class="box input">
-	                 	<input maxlength="20" type="text" name="userId" id="userId" autofocus/>
+					 <div class="box row">
+		                 <div class="box label">
+		                    <label for="userPwd" >
+			                    <span>
+			                     	<a>PASSWORD</a>
+		                     	</span>
+	                     	</label>
+		                 </div>
+		                 <div class="box input">
+		                    <input maxlength="20" type="password" name="userPwd" id="userPwd"/>
+		                 </div>
 	                 </div>
-                 </div>
-				 <div class="box row">
-	                 <div class="box label">
-	                    <label for="userPwd" >
-		                    <span>
-		                     	<a>PASSWORD</a>
-	                     	</span>
-                     	</label>
-	                 </div>
-	                 <div class="box input">
-	                    <input maxlength="20" type="password" name="userPwd" id="userPwd"/>
-	                 </div>
-                 </div>
+				</div>
 			</div>
-		</div>
-		
-		<div class="button" align="center">	
-			<button   style=" cursor:pointer; border:1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;" type="button" onclick="login();" 
-			onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='white'>
-					<a style=" font-size: 8px; color: #484848;" >SIGN IN</a>
-			</button>				
-		</div>
 			
+			<div class="button" align="center">			
+				<button style="cursor:pointer; border:1px solid #BDBDBD; background-color: #FFFFFF; width: 170px; line-height: 48px;" type="button" onclick="login();" 
+						onmouseover="this.style.backgroundColor='#F0F0F0';" onmouseout="this.style.backgroundColor='white';">
+						<span style="font-size: 8px; color: #484848;">SIGN IN</span>
+				</button>				
+			</div>
 			
-		<div class="search" style="font-size: 11px; margin-top: 10px; margin-left: 10px;   text-align:center; ">
-			<a href="<%=cp%>/shop/member/findId.do">SEARCH ID</a> <span>&nbsp;/&nbsp;</span> 
-			<a href="<%=cp%>/shop/member/find.do">PASSWORD</a>
-		</div>	
-			
-		
-		 <table width="300">
-			<tr  height="30">
-				<td colspan="2" align="center"><font color="red"><b>${message }</b></font></td>
-			</tr>
-		</table>
-
-	<%--	<table style="margin: auto;">
-			<tr height="2">
-				<td colspan="2" bgcolor="#cccccc"></td>
-			</tr>
-
-			<tr height="30">
-				<td colspan="2" align="center"><a
-					href="<%=cp%>/shop/member/find.do"><b>${searchpw }</b></a>
-			</tr>
-			<tr height="2">
-				<td colspan="2" bgcolor="#cccccc"></td>
-			</tr>
-		</table>
-		--%>
-	</form>
-</div>
-
-
-
+			<div>
+				<b style="color: red;">${message }</b>
+			</div>
+				
+			<div class="search" style="font-size: 11px; margin-top: 10px; margin-left: 10px; text-align:center; ">
+				<a href="<%=cp%>/member/find.action?mode=findId">SEARCH ID</a> <span>&nbsp;/&nbsp;</span> 
+				<a href="<%=cp%>/member/find.action?mode=findPwd">PASSWORD</a>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

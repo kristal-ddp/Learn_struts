@@ -10,59 +10,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" type="text/css"href="<%=cp%>/member/css/member_mini.css"/>
-
-<script type="text/javascript">
-
-function sendItJoin() {
-	
-	var f = document.myPageForm;
-	
-	f.action = "<%=cp%>/member.do?method=terms";
-	f.submit();
-}
-
-function sendItProfile() {
-	
-	var f = document.myPageForm;
-	
-	f.action = "<%=cp%>/member.do?method=update";
-	f.submit();
-}
-
-</script>
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/member_mini.css"/>
 
 </head>
 <body>
-
-<form name="myPageForm" method="post">
+	<jsp:include page="./header.jsp"/>
 	<div id="content" align="center">
-		<div class="right_area">
-		<c:choose>
-			<c:when test="${empty userId }">
-				<a href="<%=cp%>/member.do?method=login">LOGIN</a>&nbsp;&nbsp;
-			</c:when>
-			<c:when test="${!empty userId }">
-				<a href="<%=cp%>/member.do?method=logout_ok">LOGOUT</a>&nbsp;&nbsp;
-			</c:when>
-		</c:choose>
-		</div>
-		<div>
-			<button class="add_button" type="button" onclick="sendItJoin();">
-				<span>
-					<b>JOIN</b><br>
-					회원가입 페이지로 이동합니다.
-				</span>
-			</button>
-			<button class="add_button" type="button" onclick="sendItProfile();">
-				<span>
-					<b>PROFILE</b><br>
-					회원정보 수정 페이지로 이동합니다.
-				</span>
-			</button>
-		</div>
+		<button class="add_button" type="button" onclick="javascript:location.href='<%=cp%>/member/join.action';">
+			<span>
+				<b>JOIN</b><br>
+				회원가입 페이지로 이동합니다.
+			</span>
+		</button>
+		<button class="add_button" type="button" onclick="javascript:location.href='<%=cp%>/member/update.action';">
+			<span>
+				<b>PROFILE</b><br>
+				회원정보 수정 페이지로 이동합니다.
+			</span>
+		</button>
 	</div>
-</form>
-
 </body>
 </html>

@@ -1,22 +1,22 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="<%=cp%>/css/shopStyle.css" />
-<link rel="stylesheet" type="text/css" href="<%=cp%>/member/css/memberListStyle.css" />
-<link rel="stylesheet" type="text/css" href="<%=cp%>/member/css/find.css" />
-<link rel="stylesheet" type="text/css"href="<%=cp%>/member/css/member.css" />
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/shopStyle.css"/>
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/memberListStyle.css" />
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/find.css" />
+<link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/member.css" />
 
 <script type="text/javascript">
 
-	function searchid(){
+	function searchId(){
 	
 		var f = document.myForm;
 		
@@ -32,12 +32,12 @@
 			return;
 		}
 		
-		f.action = "<%=cp%>/member.do?method=find_ok.do";
+		f.action = "<%=cp%>/member/find.action";
 		f.submit();
 		
 	}
 	
-	function searchpw(){
+	function searchPwd(){
 		
 		var f = document.myForm;
 		
@@ -53,171 +53,97 @@
 			return;
 		}
 		
-		f.action = "<%=cp%>/member.do?method=find_ok.do";
-			f.submit();
+		f.action = "<%=cp%>/member/find.action";
+		f.submit();
 	}
-
 </script>
 
 </head>
 <body>
-
-<jsp:include page="./header.jsp"/>
-
-<!-- 아이디 찾기 -->
-<div id="content" align="center">
-
-		<br> <br>
-		<h2>아이디 찾기</h2>
-
-		<br> <br>
-		<form action="" method="post" name="myForm">
-			<div id="left_area" style="display: inline-block;">
-				<div id="update_area" >
-					<div style="width: 300px; height: 39; " class="box row">
-						<div class="box label">
-							<label for="userName">
-								<span>
-									<a>NAME</a>
-								</span>
-							</label>
+	<jsp:include page="./header.jsp"/>
+	<div id="content" align="center">
+	
+		<!-- 아이디 찾기 -->
+		<c:if test="${mode == 'findId' }">
+			<br><br>
+			<h2>아이디 찾기</h2>
+			<br><br>
+			<!-- input -->
+			<form action="" method="post" name="myForm">
+				<div id="left_area" style="display: inline-block;">
+					<div id="update_area">
+						<!-- NAME -->
+						<div style="width: 300px; height: 39;" class="box row">
+							<div class="box label">
+								<label for="userName">NAME</label>
+							</div>
+							<div class="box input">
+								<input autofocus maxlength="10" type="text" name="userName" id="userName" placeholder="이름" />
+							</div>
 						</div>
-						<div class="box input">
-							<input autofocus maxlength="10" type="text" name="userName" id="userName" placeholder="이름" />
-						</div>
-					</div>
-					<div  style="width: 300px; height: 39;" class="box row">
-						<div class="box label">
-							<label for="userTel">
-								<span>
-									<a>TEL</a>
-								</span>
-							</label>
-						</div>
-						<div class="box input">
-							<input maxlength="11" type="text" name="userTel" id="userTel" placeholder="(-)없이 숫자만 입력해주세요."
-							style="width: 170px;"/>
+						<!-- TEL -->
+						<div style="width: 300px; height: 39;" class="box row">
+							<div class="box label">
+								<label for="userTel">TEL</label>
+							</div>
+							<div class="box input">
+								<input maxlength="11" type="text" name="userTel" id="userTel" placeholder="(-)없이 숫자만 입력해주세요." style="width: 170px;" />
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			
-			<%-- <div class="button" align="center">
-				<button style=" cursor:pointer; border:1px solid #BDBDBD; background-color: #FFFFFF; width: 200px; line-height: 48px;" type="button" 
-					onclick="location.href='<%=cp%>/shop/member/login.do';" onmouseover=this.style.backgroundColor='#F0F0F0' onmouseout=this.style.backgroundColor='#FFFFFF'>
-					<a style=" font-size: 8px; color: #484848;" >BACK</a>
-				</button>	
-				
-				<button   style=" cursor:pointer; border:1px solid #BDBDBD; background-color: #000000; width: 200px; line-height: 48px;" type="button" 
-					onclick="searchid();" onmouseover=this.style.backgroundColor='#303030' onmouseout=this.style.backgroundColor='#000000'>
-					<a style=" font-size: 8px; color: #FFFFFF;" >SEARCH</a>
-				</button>
-			</div> --%>
-			
-			<div class="findButton">
-				<div style="float: left; padding-left: 370px; padding-right: 10px;">	
-					<button class="add_button" type="button" style="width: 170px;" onclick="location.href='<%=cp%>/shop/member/login.do';">
-						<a style=" font-size: 8px; color: #484848;">BACK</a>
-					</button>
-				</div>
-				
-				<div style="float: left;">
-					<button class="add_button" type="button" style="width: 170px;" onclick="searchid();">
-						<a style=" font-size: 8px; color: #484848;">SEARCH</a>
-					</button>	
-				</div>
-			</div>
-			
-			<div class="findResult">
-				<table width="200;">
-					<tr height="30">
-						<td colspan="2" align="center"><font color="red">
-							<b style="color: red;">${message }</b></font>
-						</td>
-					</tr>
-				</table>
-				<table style="margin: auto;">
-					<tr height="30">
-						<td colspan="2" align="center"><a href="<%=cp%>/shop/member/login.do"><b>${lego }</b></a>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</form>
-</div>
-
-<!-- 비밀번호 찾기 -->
-<div id="content" align="center">
-
-		<br>
-		<br>
-
-		<h2>비밀번호 찾기</h2>
-
-		<br> <br>
-		<form action="" method="post" name="myForm">
-			
-			<div id="left_area" style="display: inline-block;">
-				<div id="update_area" >
-					<div style="width: 300px; height: 39; " class="box row">
-						<div class="box label">
-							<label for="userName">
-								<span>
-									<a>ID</a>
-								</span>
-							</label>
+			</form>
+		</c:if>
+	
+		<!-- 비밀번호 찾기 -->
+		<c:if test="${mode == 'findPwd' }">
+			<br><br>
+			<h2>비밀번호 찾기</h2>
+			<br><br>
+			<!-- input -->
+			<form action="" method="post" name="myForm">
+				<div id="left_area" style="display: inline-block;">
+					<div id="update_area">
+						<!-- NAME -->
+						<div style="width: 300px; height: 39;" class="box row">
+							<div class="box label">
+								<label for="userId">ID</label>
+							</div>
+							<div class="box input">
+								<input autofocus maxlength="10" type="text" name="userId" id="userId" placeholder="아이디" />
+							</div>
 						</div>
-						<div class="box input">
-							<input autofocus maxlength="10" type="text" name="userId" id="userId" placeholder="아이디" />
-						</div>
-					</div>
-					<div  style="width: 300px; height: 39;" class="box row">
-						<div class="box label">
-							<label for="userTel">
-								<span>
-									<a>TEL</a>
-								</span>
-							</label>
-						</div>
-						<div class="box input">
-							<input maxlength="11" type="text" name="userTel" id="userTel" placeholder="(-)없이 숫자만 입력해주세요."
-							style="width: 170px;"/>
+						<!-- TEL -->
+						<div style="width: 300px; height: 39;" class="box row">
+							<div class="box label">
+								<label for="userTel">TEL</label>
+							</div>
+							<div class="box input">
+								<input maxlength="11" type="text" name="userTel" id="userTel" placeholder="(-)없이 숫자만 입력해주세요." style="width: 170px;" />
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		<br>			
-			<div class="findButton">
-				<div style="float: left; padding-left: 370px; padding-right: 10px;">	
-					<button class="add_button" type="button" style="width: 170px;" onclick="location.href='<%=cp%>/shop/member/login.do';">
-						<a style=" font-size: 8px; color: #484848;">BACK</a>
-					</button>
-				</div>
-				
-				<div style="float: left;">
-					<button class="add_button" type="button" style="width: 170px;" onclick="searchpw();">
-						<a style=" font-size: 8px; color: #484848;">SEARCH</a>
-					</button>	
-				</div>
-			</div>
-
-
-			<table>
-				<tr height="30">
-					<td colspan="2" align="center"><font color="red"><b style="color: red;">
-								${message }</b></font></td>
-				</tr>
-			</table>
-			<table style="margin: auto;">
-				<tr height="30">
-					<td colspan="2" align="center"><a
-						href="<%=cp%>/shop/member/login.do"><b>${lego }</b></a></td>
-				</tr>
-			</table>
-
-
-		</form>
-</div>
-
+			</form>
+		</c:if>
+			
+		<!-- message -->
+		<div class="findResult">
+			<b style="color: red;">${message }</b>
+			<a href="<%=cp%>/member/login.action">
+				<b>${lego }</b>
+			</a>
+		</div>
+		
+		<!-- button -->
+		<div class="findButton">
+			<button class="add_button" type="button" style="width: 170px;" onclick="location.href='<%=cp%>/member/login.action';">
+				<span style="font-size: 8px; color: #484848;">BACK</span>
+			</button>
+			<button class="add_button" type="button" style="width: 170px;" onclick="searchId();">
+				<span style="font-size: 8px; color: #484848;">SEARCH</span>
+			</button>
+		</div>
+	</div>
 </body>
 </html>

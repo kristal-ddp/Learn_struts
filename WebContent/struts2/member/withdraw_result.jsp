@@ -10,38 +10,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-
-<link rel="stylesheet" type="text/css" href="<%=cp%>/css/shopStyle.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=cp%>/member/css/memberListStyle.css" />
-
-
-
-
+<link rel="stylesheet" type="text/css" href="<%=cp%>/struts2/member/css/shopStyle.css" />
+<link rel="stylesheet" type="text/css" href="<%=cp%>/struts2/member/css/memberListStyle.css" />
 
 </head>
-<body>
-
+<body>>
+	<jsp:include page="./header.jsp" />
 	<div id="content" align="center">
-		<br> <br> <br> <br> <br> <br>
+		<br/><br/><br/><br/><br/><br/>
 		<h1>회원탈퇴가 완료되었습니다.</h1>
-
-
-		<b>그동안 kristal을 이용해주셔서 감사합니다.</b> <br> <br> <br> <br>
-		<br>
-
+		<b>그동안 kristal을 이용해주셔서 감사합니다.</b><br/><br/><br/><br/>
 		<div align="center">
-			<button style="background-color: black; width: 280px; height: 50px;"
-				type="button" onclick="javascript:location.href='<%=cp%>/shop/main/main.do';">
+			<button style="background-color: black; width: 280px; height: 50px;" type="button"
+					onclick="javascript:location.href='<%=cp%>/member/login.action';">
 				<b style="font-size: 17px; color: white;">메인으로</b>
 			</button>
 		</div>
-
-
-
 	</div>
-
-
-
 </body>
 </html>
