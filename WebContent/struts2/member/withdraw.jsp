@@ -34,7 +34,6 @@
 
 </head>
 <body>
-	<jsp:include page="./header.jsp" />
 	<div id="content" align="center">
 		<h1><b>회 원 탈 퇴</b></h1>
 		

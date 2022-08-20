@@ -16,7 +16,7 @@
 
 <script type="text/javascript">
 
-	function searchId(){
+	function searchfindId(){
 	
 		var f = document.myForm;
 		
@@ -37,7 +37,7 @@
 		
 	}
 	
-	function searchPwd(){
+	function searchfindPwd(){
 		
 		var f = document.myForm;
 		
@@ -60,16 +60,16 @@
 
 </head>
 <body>
-	<jsp:include page="./header.jsp"/>
 	<div id="content" align="center">
 	
 		<!-- 아이디 찾기 -->
-		<c:if test="${mode == 'findId' }">
+		<c:if test="${dto.mode == 'findId' }">
 			<br><br>
-			<h2>아이디 찾기</h2>
+			<h2>아이디 찾기</h2>${dto.mode }
 			<br><br>
 			<!-- input -->
 			<form action="" method="post" name="myForm">
+				<input type="hidden" name="mode" value="${dto.mode }">
 				<div id="left_area" style="display: inline-block;">
 					<div id="update_area">
 						<!-- NAME -->
@@ -96,12 +96,13 @@
 		</c:if>
 	
 		<!-- 비밀번호 찾기 -->
-		<c:if test="${mode == 'findPwd' }">
+		<c:if test="${dto.mode == 'findPwd' }">
 			<br><br>
 			<h2>비밀번호 찾기</h2>
 			<br><br>
 			<!-- input -->
 			<form action="" method="post" name="myForm">
+				<input type="hidden" name="mode" value="${dto.mode }">
 				<div id="left_area" style="display: inline-block;">
 					<div id="update_area">
 						<!-- NAME -->
@@ -140,7 +141,7 @@
 			<button class="add_button" type="button" style="width: 170px;" onclick="location.href='<%=cp%>/member/login.action';">
 				<span style="font-size: 8px; color: #484848;">BACK</span>
 			</button>
-			<button class="add_button" type="button" style="width: 170px;" onclick="searchId();">
+			<button class="add_button" type="button" style="width: 170px;" onclick="search${dto.mode}();">
 				<span style="font-size: 8px; color: #484848;">SEARCH</span>
 			</button>
 		</div>

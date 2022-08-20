@@ -4,10 +4,10 @@
 "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-	<definition name="mainLayout" template="/layout/layout.jsp">
-		<put-attribute name="header" value="/layout/header.jsp"/>
-		<put-attribute name="body" value="/layout/list.jsp"/>
-		<put-attribute name="footer" value="/layout/footer.jsp"/>
+	<definition name="mainLayout" template="/struts2/layout/layout.jsp">
+		<put-attribute name="header" value="/struts2/layout/header.jsp"/>
+		<put-attribute name="body" value="/struts2/layout/list.jsp"/>
+		<put-attribute name="footer" value="/struts2/layout/footer.jsp"/>
 	</definition>
 	
 	<definition name="boards.listLayout" extends="mainLayout">
@@ -20,5 +20,45 @@
 	
 	<definition name="boards.writeLayout" extends="mainLayout">
 		<put-attribute name="body" value="/struts2/boards/write.jsp"/>
+	</definition>
+	
+	<definition name="member.termsLayout" extends="mainLayout">
+		<put-attribute name="body" value="/struts2/member/terms.jsp"/>
+	</definition>
+	
+	<definition name="member.joinLayout" extends="mainLayout">
+		<put-attribute name="body" value="/struts2/member/join.jsp"/>
+	</definition>
+	
+	<definition name="member.join_resultLayout" extends="mainLayout">
+		<put-attribute name="body" value="/struts2/member/join_result.jsp"/>
+	</definition>
+	
+	<definition name="member.loginLayout" extends="mainLayout">
+		<put-attribute name="body" value="/struts2/member/login.jsp"/>
+	</definition>
+	
+	<definition name="member.logoutLayout" extends="mainLayout">
+		<put-attribute name="body" value="/struts2/member/logout.jsp"/>
+	</definition>
+	
+	<definition name="member.findLayout" extends="mainLayout">
+		<put-attribute name="body" value="/struts2/member/find.jsp"/>
+	</definition>
+	
+	<definition name="member.myPageLayout" extends="mainLayout">
+		<put-attribute name="body" value="/struts2/member/myPage.jsp"/>
+	</definition>
+	
+	<definition name="member.updateLayout" extends="mainLayout">
+		<put-attribute name="body" value="/struts2/member/update.jsp"/>
+	</definition>
+	
+	<definition name="member.withdrawLayout" extends="mainLayout">
+		<put-attribute name="body" value="/struts2/member/withdraw.jsp"/>
+	</definition>
+	
+	<definition name="member.withdraw_resultLayout" extends="mainLayout">
+		<put-attribute name="body" value="/struts2/member/withdraw_result.jsp"/>
 	</definition>
 </tiles-definitions>

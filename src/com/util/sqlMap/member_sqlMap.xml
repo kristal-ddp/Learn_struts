@@ -38,9 +38,8 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 	<!-- 모든 데이터 필요시 -->
 	<select id="readData" parameterClass="String" resultClass="memberDTO">
 		select userId, userPwd, userName, userGender,
-				'{' || TO_CHAR(USERBIRTH, 'YYYY,MM,DD') || '}' AS USERBIRTH,
-				'{' || USERADDR || '}' AS USERADDR,
-				userAddr, userEmail, userTel
+				<!-- STRING_TO_ARRAY(USERADDRTO_CHAR(USERBIRTH, 'YYYY,MM,DD'),',') AS USERBIRTH, STRING_TO_ARRAY(USERADDR,',') AS USERADDR, -->
+				userEmail, userTel
 			from member
 			where userId = #userId# and registration = 1
 	</select>
