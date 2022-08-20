@@ -22,7 +22,7 @@
  			<result name="input" type="tiles">boards.writeLayout</result>
  			<!-- <result name="input">/struts2/boards/write.jsp</result> -->
  			<result name="success" type="redirectAction">list</result>
- 			<result name="login" type="tiles">boards.loginLayout</result>
+ 			<result name="login" type="tiles">member.loginLayout</result>
  			<!-- <result name="login">/struts2/member/login.jsp</result> -->
  		</action>
  		
@@ -36,6 +36,7 @@
  			<result name="input" type="tiles">boards.writeLayout</result>
  			<!-- <result name="input">/struts2/boards/write.jsp</result> -->
  			<result name="success" type="redirectAction">list?pageNum=${dto.pageNum }&amp;searchKey=${dto.searchKey }</result>
+ 			<result name="login" type="tiles">member.loginLayout</result>
  		</action>
  		
  		<action name="delete" method="delete" class="com.struts2.boards.BoardsAction">

@@ -127,6 +127,7 @@ public class BoardsAction extends ActionSupport
 		request.setAttribute("totalDataCount", totalDataCount);
 		request.setAttribute("pageIndexList", myPage.pageIndexList(currentPage, totalPage, urlList));
 		request.setAttribute("urlView", urlView);
+		request.setAttribute("rnum", dto.getRnum());
 		
 		return SUCCESS;
 		
@@ -279,7 +280,7 @@ public class BoardsAction extends ActionSupport
 			return LOGIN;
 		}
 		
-		dto.setUserId(userId);/*dto.setUserId(userId);*/
+		dto.setUserId(userId);
 		
 		if(dto==null || dto.getMode()==null || dto.getMode().equals("")) {
 			
@@ -292,8 +293,6 @@ public class BoardsAction extends ActionSupport
 			//부모 데이터를 변경해서 답변데이터로 write.jsp에 출력
 			dto.setSubject("[답변]" + dto.getSubject());
 			dto.setContent(dto.getContent() + temp);
-			dto.setEmail("");
-			dto.setPwd("");
 			
 			request.setAttribute("mode", "reply");
 			request.setAttribute("pageNum", dto.getPageNum());

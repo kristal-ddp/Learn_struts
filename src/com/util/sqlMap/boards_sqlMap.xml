@@ -20,7 +20,7 @@
 
 	<!-- 글 조회 view, update, reply에 사용 -->
 	<select id="readData" resultClass="BoardsDTO" parameterClass="int">
-		SELECT <include refid="column"/>
+		SELECT <include refid="column"/>,GROUPNUM,ORDERNUM,DEPTH,PARENT
 			FROM BOARDS
 			WHERE BOARDNUM = #boardNum#
 	</select>
@@ -50,13 +50,21 @@
 
 	<!-- 리스트 -->
 	<select id="listData" resultClass="BoardsDTO" parameterClass="map">
-		SELECT * FROM (
+		<!-- SELECT * FROM (
 			SELECT ROWNUM AS RNUM, DATA.* FROM (
 				SELECT <include refid="column"/>,DEPTH
 					FROM BOARDS
 					WHERE $searchKey$ LIKE '%' || #searchValue# || '%'
 					ORDER BY GROUPNUM DESC, ORDERNUM ASC) DATA)
-			WHERE RNUM BETWEEN #start# AND #end#
+			WHERE RNUM BETWEEN #start# AND #end# -->
+		SELECT * FROM (
+			SELECT ROWNUM RNUM, DATA.* FROM (
+				SELECT <include refid="column"/>, DEPTH
+					FROM BOARDS
+					WHERE $searchKey$ LIKE '%' || #searchValue# || '%'
+					ORDER BY GROUPNUM DESC, ORDERNUM ASC) DATA)
+		WHERE RNUM BETWEEN #start# AND #end#
+		
 	</select>
 	
 	<!-- 전체 글수 -->
