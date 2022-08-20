@@ -25,18 +25,6 @@
 
 </head>
 <body>
-<div class="right_area">
-			<c:choose>
-				<c:when test="${(empty dto.userId) && (empty userId) }">
-					<a href="<%=cp%>/member/terms.action">JOIN</a>&nbsp;&nbsp;
-					<a href="<%=cp%>/member/login.action">LOGIN</a>&nbsp;&nbsp;
-				</c:when>
-				<c:when test="${!((empty dto.userId) && (empty userId)) }">
-					<a href="<%=cp%>/member/myPage.action">MYPAGE</a>&nbsp;&nbsp;
-					<a href="<%=cp%>/member/logout.action">LOGOUT</a>&nbsp;&nbsp;
-				</c:when>
-			</c:choose>
-		</div>
 <div id="content" align="center">
 	<!-- board -->
 	<div class="boardList">
@@ -69,7 +57,7 @@
 				<c:forEach var="dto" items="${lists }">
 					<tr>
 						<!-- NO -->
-						<td>${dto.boardNum }</td>
+						<td>${dto.rnum }</td>
 						<!-- SUBJECT -->
 						<td><a href="${urlView }&boardNum=${dto.boardNum}">${dto.subject }</a></td>
 						<!-- ID -->

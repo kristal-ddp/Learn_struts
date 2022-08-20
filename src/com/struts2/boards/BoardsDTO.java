@@ -22,6 +22,7 @@ public class BoardsDTO {
 	private String pageNum;
 	
 	private String mode;
+	private int rnum;
 
 	public int getListNum() {
 		return listNum;
@@ -158,5 +159,14 @@ public class BoardsDTO {
 	public void setMode(String mode) {
 		this.mode = mode;
 	}
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+	
 	
 }
