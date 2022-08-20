@@ -4,31 +4,37 @@
 <struts>
 	<package name="boards" extends="struts-default" namespace="/boards">
 		
-		<!-- <result-types>
+		<result-types>
  			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
- 		</result-types> -->
+ 		</result-types>
  		
  		<action name="list" method="list" class="com.struts2.boards.BoardsAction">
- 			<result name="success">/struts2/boards/list.jsp</result>
+ 			<result name="success" type="tiles">boards.listLayout</result>
+ 			<!-- <result name="success">/struts2/boards/list.jsp</result> -->
  		</action>
  		
  		<action name="view" method="view" class="com.struts2.boards.BoardsAction">
- 			<result name="success">/struts2/boards/view.jsp</result>
+ 			<result name="success" type="tiles">boards.viewLayout</result>
+ 			<!-- <result name="success">/struts2/boards/view.jsp</result> -->
  		</action>
  		
  		<action name="write" method="write" class="com.struts2.boards.BoardsAction">
- 			<result name="input">/struts2/boards/write.jsp</result>
+ 			<result name="input" type="tiles">boards.writeLayout</result>
+ 			<!-- <result name="input">/struts2/boards/write.jsp</result> -->
  			<result name="success" type="redirectAction">list</result>
- 			<result name="login">/struts2/member/login.jsp</result>
+ 			<result name="login" type="tiles">boards.loginLayout</result>
+ 			<!-- <result name="login">/struts2/member/login.jsp</result> -->
  		</action>
  		
  		<action name="update" method="update" class="com.struts2.boards.BoardsAction">
- 			<result name="input">/struts2/boards/write.jsp</result>
+ 			<result name="input" type="tiles">boards.writeLayout</result>
+ 			<!-- <result name="input">/struts2/boards/write.jsp</result> -->
  			<result name="success" type="redirectAction">list?pageNum=${dto.pageNum }</result>
  		</action>
  		
  		<action name="reply" method="reply" class="com.struts2.boards.BoardsAction">
- 			<result name="input">/struts2/boards/write.jsp</result>
+ 			<result name="input" type="tiles">boards.writeLayout</result>
+ 			<!-- <result name="input">/struts2/boards/write.jsp</result> -->
  			<result name="success" type="redirectAction">list?pageNum=${dto.pageNum }&amp;searchKey=${dto.searchKey }</result>
  		</action>
  		

@@ -18,7 +18,7 @@
 		SELECT NVL(MAX(BOARDNUM), 0) FROM BOARDS
 	</select>
 
-	<!-- 글 조회 view -->
+	<!-- 글 조회 view, update, reply에 사용 -->
 	<select id="readData" resultClass="BoardsDTO" parameterClass="int">
 		SELECT <include refid="column"/>
 			FROM BOARDS
@@ -27,8 +27,8 @@
 
 	<!-- 글 작성 -->
 	<insert id="insertData" parameterClass="BoardsDTO">
-		INSERT INTO BOARDS(<include refid="column"/>)
-			VALUES(<include refid="input-column"/>)
+		INSERT INTO BOARDS(<include refid="column"/>, GROUPNUM, ORDERNUM, DEPTH, PARENT)
+			VALUES(<include refid="input-column"/>, #groupNum#, #orderNum#, #depth#, #parent#)
 	</insert>
 	
 	<!-- 글 수정 -->
@@ -52,17 +52,16 @@
 	<select id="listData" resultClass="BoardsDTO" parameterClass="map">
 		SELECT * FROM (
 			SELECT ROWNUM AS RNUM, DATA.* FROM (
-				SELECT <include refid="column"/>
+				SELECT <include refid="column"/>,DEPTH
 					FROM BOARDS
 					WHERE $searchKey$ LIKE '%' || #searchValue# || '%'
-					ORDER BY BOARDNUM DESC) DATA)
+					ORDER BY GROUPNUM DESC, ORDERNUM ASC) DATA)
 			WHERE RNUM BETWEEN #start# AND #end#
 	</select>
 	
 	<!-- 전체 글수 -->
 	<select id="dataCount" resultClass="int" parameterClass="map">
-		SELECT COUNT(*)
-			FROM BOARDS
+		SELECT NVL(COUNT(*),0) FROM BOARDS
 			WHERE $searchKey$ LIKE '%' || #searchValue# || '%'
 	</select>
 	
