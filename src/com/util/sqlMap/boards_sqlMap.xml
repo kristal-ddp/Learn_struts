@@ -77,7 +77,7 @@
 	<select id="preReadData" parameterClass="map" resultClass="BoardsDTO">
 		SELECT DATA.* FROM (
 		SELECT BOARDNUM,SUBJECT FROM BOARDS
-		WHERE ($SEARCHKEY$ LIKE '%' || #SEARCHVALUE# || '%') AND
+		WHERE ($searchKey$ LIKE '%' || #searchValue# || '%') AND
 	<![CDATA[
 		((GROUPNUM=#groupNum# AND ORDERNUM<#orderNum#)
 		OR (GROUPNUM>#groupNum#))

@@ -2,9 +2,9 @@ package com.struts2.boards;
 
 public class BoardsDTO {
 	
-	private int listNum;
+	private int listNum;//일련번호. boardNum 대신 사용
 	
-	private int boardNum;//글 작성 순번
+	private int boardNum;//실제 게시글 작성 순번
 	private String userId;
 	private String pwd;
 	private String email;

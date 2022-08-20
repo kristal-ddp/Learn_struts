@@ -57,9 +57,16 @@
 				<c:forEach var="dto" items="${lists }">
 					<tr>
 						<!-- NO -->
-						<td>${dto.rnum }</td>
+						<td>${dto.listNum }</td>
 						<!-- SUBJECT -->
-						<td><a href="${urlView }&boardNum=${dto.boardNum}">${dto.subject }</a></td>
+						<td style="text-align: left;padding-left: 50px;">
+							<c:if test="${dto.depth!=0 }">
+								<c:forEach var="i" begin="1" end="${dto.depth }" step="1">
+									&nbsp;&nbsp;
+								</c:forEach>						
+							</c:if>
+							<a href="${urlView }&boardNum=${dto.boardNum}">${dto.subject }</a>
+						</td>
 						<!-- ID -->
 						<td>${dto.userId }</td>
 						<!-- DATE -->
