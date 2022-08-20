@@ -14,63 +14,9 @@
 <link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/memberListStyle.css" />
 <link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/member.css" />
 
-<script type="text/javascript">
-	function sendIt(){
-		
-		var f = document.myForm;
-		
-		if(!f.userId.value){
-			alert("아이디를 입력해 주세요.");
-			f.userId.focus();
-			return;
-		}
-		
-		if(!f.userPwd.value){
-			alert("패스워드를 입력해 주세요.");
-			f.userPwd.focus();
-			return;
-		}
-			
-		if(!f.userName.value){
-			alert("이름을 입력해 주세요.");
-			f.userName.focus();
-			return;
-		}
-		
-		if(!f.userGender.value){
-			alert("성별을 입력해 주세요.");
-			f.userGender.focus();
-			return;
-		}
-		if(!f.userBirth[0].value){
-			alert("생년월일을 입력해 주세요.");
-			f.userBirth[0].focus();
-			return;
-		}
-		 if(!f.userBirth[1].value){
-			alert("월을 입력해 주세요.");
-			f.userBirth[1].focus();
-			return;
-		}
-		if(!f.userBirth[2].value){
-			alert("일을 입력해 주세요.");
-			f.userBirth[2].focus();
-			return;
-		}
-		
-		if(!f.userTel.value){
-			alert("전화번호를 입력해 주세요.");
-			f.userTel.focus();
-			return;
-		}
-		
-		f.action = "<%=cp%>/member/join.action"
-		f.submit();
-		
-	}
-</script>
-
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 <!-- 주소 API -->
 <script type="text/javascript">
     function sample6_execDaumPostcode() {
@@ -121,6 +67,109 @@
         }).open();
     }
 </script>
+<!-- sendIt() -->
+<script type="text/javascript">
+	function sendIt(){
+		
+		var f = document.myForm;
+
+		if(!f.userId.value){
+			alert("아이디를 입력해 주세요.");
+			f.userId.focus();
+			return;
+		}
+		
+		if(!f.flag.value || f.userId.value != f.idCheck.value){
+			alert("아이디 중복확인을 해주세요");
+			return;
+		}
+		
+		if(f.flag.value == "false"){
+			alert("사용할수 없는 아이디입니다.");
+			f.userId.focus();
+			return;
+		}
+		
+		if(!f.userPwd.value){
+			alert("패스워드를 입력해 주세요.");
+			f.userPwd.focus();
+			return;
+		}
+			
+		if(!f.userName.value){
+			alert("이름을 입력해 주세요.");
+			f.userName.focus();
+			return;
+		}
+		
+		if(!f.userGender.value){
+			alert("성별을 입력해 주세요.");
+			f.userGender.focus();
+			return;
+		}
+		if(!f.userBirth[0].value){
+			alert("생년월일을 입력해 주세요.");
+			f.userBirth[0].focus();
+			return;
+		}
+		 if(!f.userBirth[1].value){
+			alert("월을 입력해 주세요.");
+			f.userBirth[1].focus();
+			return;
+		}
+		if(!f.userBirth[2].value){
+			alert("일을 입력해 주세요.");
+			f.userBirth[2].focus();
+			return;
+		}
+		
+		if(!f.userTel.value){
+			alert("전화번호를 입력해 주세요.");
+			f.userTel.focus();
+			return;
+		}
+		
+		f.action = "<%=cp%>/member/join.action"
+		f.submit();
+		
+	}
+</script>
+<!-- 중복체크 -->
+<script type="text/javascript">
+	$(function() {
+		$("#idCheckButton").click(function() {
+			var param = "userId=" + $("#userId").val();
+
+			$.ajax({
+				type:"post",
+				url:"<%=cp%>/struts2/member/idCheck.jsp",
+				data:param,
+				dataType:"json",
+				success:function(data){
+					document.getElementById("idCheck").value = data[0].idCheck;
+					document.getElementById("flag").value = data[0].flag;
+					$("#msg").html(data[0].msg);
+					alert(data[0].msg);
+				},
+				beforeSend:idNotNull,
+				error:function(e){
+					alert(e.responseText);
+				}
+			});
+		});
+	});
+	
+	function idNotNull() {
+		var flag = true;
+
+		if(!$("#userId").val()){
+			alert("아이디를 입력하세요");
+			$("#userId").focus();
+			return false;
+		}
+	}
+</script>
+
 </head>
 <body>
 	<div id="content" align="center">
@@ -138,10 +187,13 @@
 								<label for="userId"><span>ID</span></label>
 							</div>
 							<div class="box input">
-								<input autofocus onKeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'');" type="text" name="userId" class="inputStyle" placeholder="아이디" />
-								<input type="button" value="중복확인" class="inputStyle" onclick="idCheck()" />
+								<input autofocus onKeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'');" type="text" id="userId" name="userId" class="inputStyle" placeholder="아이디" />
+								<input type="button" id="idCheckButton" value="중복확인" class="inputStyle" style="float: right; width: 80px;"/>
+								<input type="hidden" id="flag" value="" name="flag">
+								<input type="hidden" id="idCheck" value="" name="idCheck">
 							</div>
 						</div>
+						<div id="msg"></div>
 						<!-- PASSWORD -->
 						<div class="box row">
 							<div class="joinLabel">
