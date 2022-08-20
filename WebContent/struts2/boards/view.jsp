@@ -96,22 +96,6 @@ function sendData(value) {
 						</tbody>
 					</table>
 				</div>
-				<div class="bbsArticle_bottomLine">
-					BEFORE:
-					<c:if test="${!empty preSubject }">
-						<a
-							href="<%=cp %>/boards/view.action?${params}&boardNum=${preBoardNum}">
-							${preSubject } </a>
-					</c:if>
-				</div>
-				<div class="bbsArticle_noLine">
-					AFTER:
-					<c:if test="${!empty nextSubject }">
-						<a
-							href="<%=cp %>/boards/view.action?${params}&boardNum=${nextBoardNum}">
-							${nextSubject } </a>
-					</c:if>
-				</div>
 				<div class="button">
 					<input type="hidden" name="searchParam" value="${searchParam }">
 					<div class="elementLeft">
@@ -125,6 +109,24 @@ function sendData(value) {
 							<a href="#none" onclick="sendData('delete')" class="element">DELETE</a>
 						</div>
 					<%-- </c:if> --%>
+				</div>
+			</div>
+			<div class="moveSubject">
+				<div class="">
+					BEFORE:
+					<c:if test="${!empty preSubject }">
+						<a href="<%=cp %>/boards/view.action?${params}&boardNum=${preBoardNum}">
+							${preSubject }
+						</a>
+					</c:if>
+				</div>
+				<div class="">
+					AFTER:
+					<c:if test="${!empty nextSubject }">
+						<a href="<%=cp %>/boards/view.action?${params}&boardNum=${nextBoardNum}">
+							${nextSubject }
+						</a>
+					</c:if>
 				</div>
 			</div>
 		</div>

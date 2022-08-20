@@ -56,3 +56,10 @@ p {
 .element{
 	padding-right: 10pt;
 }
+
+.moveSubject {
+	border: 1px solid #dfdfdf;
+	padding: 20px 30px 30px;
+	width: 600px;
+	color: #484848;
+}

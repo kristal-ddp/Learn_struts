@@ -67,7 +67,7 @@ public class BoardsAction extends ActionSupport
 		}
 		
 		Map<String, Object> hMap = new HashMap<String, Object>();
-		hMap.put("searchKey", dto.getSearchKey());
+		hMap.put("searchKey", dto.getSearchKey());//Map<Key,Value>은 Key에 대한 Value값을 매칭해서 가져올 때 사용
 		hMap.put("searchValue", dto.getSearchValue());
 		
 		totalDataCount = dao.getIntValue("boards.dataCount", hMap);
@@ -199,7 +199,6 @@ public class BoardsAction extends ActionSupport
 		request.setAttribute("nextBoardNum", nextBoardNum);
 		request.setAttribute("nextSubject", nextSubject);
 		request.setAttribute("params", param);
-		request.setAttribute("lineSu", lineSu);
 		request.setAttribute("pageNum", pageNum);
 		
 		return SUCCESS;
