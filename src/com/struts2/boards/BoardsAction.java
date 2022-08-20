@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.util.MyPage;
+import com.util.Page_soo;
 import com.util.dao.CommonDAO;
 import com.util.dao.CommonDAOImpl;
 
@@ -41,7 +42,8 @@ public class BoardsAction extends ActionSupport
 		
 		CommonDAO dao = CommonDAOImpl.getInstance();
 		
-		MyPage myPage = new MyPage();
+		/*MyPage myPage = new MyPage();*/
+		Page_soo page = new Page_soo();
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		
@@ -73,15 +75,18 @@ public class BoardsAction extends ActionSupport
 		totalDataCount = dao.getIntValue("boards.dataCount", hMap);
 		
 		if(totalDataCount!=0) {
-			totalPage = myPage.getPageCount(numPerPage, totalDataCount);
+			/*totalPage = myPage.getPageCount(numPerPage, totalDataCount);*/
+			totalPage = page.totalPageCount(numPerPage, totalDataCount);
 		}
 		
 		if(currentPage>totalPage) {
 			currentPage = totalPage;
 		}
 		
-		int start = (currentPage-1)*numPerPage+1;
-		int end = currentPage*numPerPage;
+		/*int start = (currentPage-1)*numPerPage+1;
+		int end = currentPage*numPerPage;*/
+		int start = page.start(currentPage, numPerPage, totalDataCount);
+		int end = page.end(currentPage, numPerPage, totalDataCount);
 		
 		hMap.put("start", start);
 		hMap.put("end", end);
@@ -105,8 +110,8 @@ public class BoardsAction extends ActionSupport
 		
 		//주소정리
 		String param = "";
-		String urlList = "";
-		String urlView ="";
+		String listUrl = "";
+		String viewUrl ="";
 		
 		if(!dto.getSearchValue().equals("")) {
 			
@@ -115,18 +120,19 @@ public class BoardsAction extends ActionSupport
 					URLEncoder.encode(dto.getSearchValue(),"UTF-8");
 		}
 		
-		urlList = cp + "/boards/list.action";
-		urlView = cp + "/boards/view.action?pageNum=" + currentPage;
+		listUrl = cp + "/boards/list.action";
+		viewUrl = cp + "/boards/view.action?pageNum=" + currentPage;
 		
 		if(!param.equals("")) {
-			urlList += "?" + param;
-			urlView += "&" + param;
+			listUrl += "?" + param;
+			viewUrl += "&" + param;
 		}
 		
 		request.setAttribute("lists", lists);
 		request.setAttribute("totalDataCount", totalDataCount);
-		request.setAttribute("pageIndexList", myPage.pageIndexList(currentPage, totalPage, urlList));
-		request.setAttribute("urlView", urlView);
+		/*request.setAttribute("pageIndexList", myPage.pageIndexList(currentPage, totalPage, listUrl));*/
+		request.setAttribute("paging", page.paging(currentPage, totalPage, listUrl));
+		request.setAttribute("viewUrl", viewUrl);
 		request.setAttribute("rnum", dto.getRnum());
 		
 		return SUCCESS;
@@ -301,9 +307,15 @@ public class BoardsAction extends ActionSupport
 		}
 		
 		//orderNum 변경
+		int orderNum = dao.getIntValue("boards.maxOrderNum", dto.getParent());//dto.getBoardNum(): parent의 boardNum
+		
+		System.out.println(orderNum);
+		System.out.println(dto.getParent());
+		
 		Map<String, Object> hMap = new HashMap<>();
 		hMap.put("groupNum", dto.getGroupNum());
-		hMap.put("orderNum", dto.getOrderNum());
+		/*hMap.put("orderNum", dto.getOrderNum());*/
+		hMap.put("orderNum", orderNum);
 		
 		dao.updateData("boards.orderNumUpdate", hMap);
 		
@@ -312,7 +324,8 @@ public class BoardsAction extends ActionSupport
 		
 		dto.setBoardNum(maxBoardNum + 1);
 		dto.setDepth(dto.getDepth() + 1);
-		dto.setOrderNum(dto.getOrderNum() + 1);
+		/*dto.setOrderNum(dto.getOrderNum() + 1);*/
+		dto.setOrderNum(orderNum + 1);
 		
 		dao.insertData("boards.insertData", dto);
 		

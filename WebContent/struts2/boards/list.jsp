@@ -57,7 +57,7 @@
 				<c:forEach var="dto" items="${lists }">
 					<tr>
 						<!-- NO -->
-						<td>${dto.listNum }</td>
+						<td>${dto.rnum }</td>
 						<!-- SUBJECT -->
 						<td style="text-align: left;padding-left: 50px;">
 							<c:if test="${dto.depth!=0 }">
@@ -65,7 +65,7 @@
 									&nbsp;&nbsp;
 								</c:forEach>						
 							</c:if>
-							<a href="${urlView }&boardNum=${dto.boardNum}">${dto.subject }</a>
+							<a href="${viewUrl }&boardNum=${dto.boardNum}">${dto.subject }</a>
 						</td>
 						<!-- ID -->
 						<td>${dto.userId }</td>
@@ -81,7 +81,7 @@
 		<!-- paging -->
 		<div id="paging">
 			<p>
-				<c:if test="${totalDataCount!=0 }">${pageIndexList }</c:if>
+				<c:if test="${totalDataCount!=0 }">${paging }</c:if>
 			</p>
 		</div>
 		

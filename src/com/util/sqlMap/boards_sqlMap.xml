@@ -62,9 +62,8 @@
 				SELECT <include refid="column"/>, DEPTH
 					FROM BOARDS
 					WHERE $searchKey$ LIKE '%' || #searchValue# || '%'
-					ORDER BY GROUPNUM DESC, ORDERNUM ASC) DATA)
-		WHERE RNUM BETWEEN #start# AND #end#
-		
+					ORDER BY GROUPNUM ASC, ORDERNUM DESC) DATA)
+		WHERE RNUM BETWEEN #end# AND #start# ORDER BY RNUM DESC
 	</select>
 	
 	<!-- 전체 글수 -->
@@ -104,5 +103,11 @@
 		UPDATE BOARDS SET ORDERNUM=ORDERNUM+1
 		WHERE GROUPNUM=#groupNum# AND ORDERNUM>#orderNum#
 	</update>
+	
+	<!-- OrderNum의 maxNum -->
+	<select id="maxOrderNum" parameterClass="int" resultClass="int">
+		SELECT MAX(ORDERNUM) FROM(SELECT ORDERNUM FROM BOARDS START WITH BOARDNUM=#BOARDNUM#
+		CONNECT BY PRIOR BOARDNUM=PARENT)
+	</select>
 
 </sqlMap>
