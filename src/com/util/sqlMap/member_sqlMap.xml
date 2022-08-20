@@ -23,6 +23,11 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 			where userId = #userId# and userPwd = #userPwd# and registration = 1
 	</select>
 	
+	<!-- 아이디 중복 확인 -->
+	<select id="idCheck" resultClass="String" parameterClass="String">
+		select userId from member where userId = #userId#
+	</select>
+	
 	<!-- 아이디 찾기 -->
 	<select id="findId" parameterClass="memberDTO" resultClass="String">
 		select userId from member
