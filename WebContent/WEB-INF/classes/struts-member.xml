@@ -4,51 +4,55 @@
 <struts>
 	<package name="member" extends="struts-default" namespace="/member">
 
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+		</result-types>
+		
 		<global-results>
 			<result name="login" type="redirectAction">login</result>
 			<result name="myPage" type="redirectAction">myPage</result>
 		</global-results>
 		
 		<action name="terms" class="com.struts2.member.MemberAction" method="terms">
-			<result name="success">/struts2/member/terms.jsp</result>
+			<result name="success" type="tiles">member.termsLayout</result>
 		</action>
 	
 		<action name="join" class="com.struts2.member.MemberAction" method="join">
-			<result name="input">/struts2/member/join.jsp</result>
-			<result name="success">/struts2/member/join_result.jsp</result>
+			<result name="input" type="tiles">member.joinLayout</result>
+			<result name="success" type="tiles">member.join_resultLayout</result>
 		</action>
 		
-		<action name="join_result" class="com.struts2.member.MemberAction" method="join">
-			<result name="success">/struts2/member/join_result.jsp</result>
-		</action>
+		<!-- <action name="join_result" class="com.struts2.member.MemberAction" method="join">
+			<result name="success" type="tiles">member.join_resultLayout</result>
+		</action> -->
 		
 		<action name="login" class="com.struts2.member.MemberAction" method="login">
-			<result name="input">/struts2/member/login.jsp</result>
+			<result name="input" type="tiles">member.loginLayout</result>
 			<result name="success" type="redirectAction">myPage</result>
 		</action>
 	
 		<action name="logout" class="com.struts2.member.MemberAction" method="logout">
-			<result name="input">/struts2/member/logout.jsp</result>
+			<result name="input" type="tiles">member.logoutLayout</result>
 			<result name="success" type="redirectAction">myPage</result>
 		</action>
 	
 		<action name="find" class="com.struts2.member.MemberAction" method="find">
-			<result name="input">/struts2/member/find.jsp</result>
-			<result name="success">/struts2/member/login.jsp</result>
+			<result name="input" type="tiles">member.findLayout</result>
+			<result name="success" type="tiles">member.loginLayout</result>
 		</action>
 	
 		<action name="myPage" class="com.struts2.member.MemberAction" method="myPage">
-			<result name="success">/struts2/member/myPage.jsp</result>
+			<result name="success" type="tiles">member.myPageLayout</result>
 		</action>
 	
 		<action name="update" class="com.struts2.member.MemberAction" method="update">
-			<result name="input">/struts2/member/join.jsp</result>
+			<result name="input" type="tiles">member.joinLayout</result>
 			<result name="success" type="redirectAction">myPage</result>
 		</action>
 	
 		<action name="withdraw" class="com.struts2.member.MemberAction" method="withdraw">
-			<result name="input">/struts2/member/withdraw.jsp</result>
-			<result name="success" type="redirectAction">withdraw_result</result>
+			<result name="input" type="tiles">"member.withdrawLayout</result>
+			<result name="success" type="tiles">member.withdraw_resultLayout</result>
 		</action>
 
 	</package>

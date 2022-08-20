@@ -40,7 +40,6 @@
 
 </head>
 <body>
-	<jsp:include page="./header.jsp"/>
 	<div id="content" align="center">
 		<br> <br>
 			<h2>로그인</h2>

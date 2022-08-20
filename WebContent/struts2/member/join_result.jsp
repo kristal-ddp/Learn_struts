@@ -12,7 +12,6 @@
 <link rel="stylesheet" type="text/css" href="<%=cp%>/struts2/member/css/shopStyle.css" />
 </head>
 <body>
-	<jsp:include page="./header.jsp"/>
 	<div id="content" align="center">
 		<br/><br/><br/><br/><br/><br/>
 		<h3>${userName }님반갑습니다</h3><br/>

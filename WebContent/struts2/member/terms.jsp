@@ -53,7 +53,6 @@
 
 </head>
 <body>>
-	<jsp:include page="./header.jsp" />
 	<div id="content" align="center">
 		<div class="joinTitle" align="center" style="font-weight: 700; padding-top: 15px; font: 10pt;">회원가입</div>
 

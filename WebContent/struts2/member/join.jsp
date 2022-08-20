@@ -65,44 +65,19 @@
 			return;
 		}
 		
-		/* if(!f.userEmail.value){
-			alert("E-Mail 입력해 주세요.");
-			f.userEmail.focus();
-			return;
-		} */
 		f.action = "<%=cp%>/member/join.action"
 		f.submit();
 		
 	}
 	
-	
-<%-- function checkid(){
-		
-		var f = document.myForm;
-		
-		f.action = "<%=cp%>/shop/member/idcheck.do"
-			f.submit();
+	$(function() {
 		
 		
-		}
 		
-function idCheck(){
-	var id = document.myForm.userId.value;
-	
- window.open("<%=cp%>/shop/member/idcheck.do?userId="+id,"_blank","width=300px height=200px left=800px top=350px"); 
-	
-	
-	
-} --%>
-
-/* function idCheck2(){
-	
-	opener.myForm.userId.value="d";
-	opener.myForm.userId
-	
-} */
-
-
+		
+		
+		
+	});
 </script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -157,7 +132,6 @@ function idCheck(){
 </script>
 </head>
 <body>
-	<jsp:include page="./header.jsp"/>
 	<div id="content" align="center">
 		<div class="join_wrap">
 			<div class="joinTitle" align="center" style="font-weight: 700; padding-top: 15px; font: 10pt;">

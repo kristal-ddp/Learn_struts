@@ -15,7 +15,6 @@
 
 </head>
 <body>>
-	<jsp:include page="./header.jsp" />
 	<div id="content" align="center">
 		<br/><br/><br/><br/><br/><br/>
 		<h1>회원탈퇴가 완료되었습니다.</h1>

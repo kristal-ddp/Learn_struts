@@ -14,14 +14,13 @@
 
 </head>
 <body>
-	<jsp:include page="./header.jsp"/>
 	<div id="content" align="center">
-		<button class="add_button" type="button" onclick="javascript:location.href='<%=cp%>/member/join.action';">
+		<%-- <button class="add_button" type="button" onclick="javascript:location.href='<%=cp%>/member/join.action';">
 			<span>
 				<b>JOIN</b><br>
 				회원가입 페이지로 이동합니다.
 			</span>
-		</button>
+		</button> --%>
 		<button class="add_button" type="button" onclick="javascript:location.href='<%=cp%>/member/update.action';">
 			<span>
 				<b>PROFILE</b><br>

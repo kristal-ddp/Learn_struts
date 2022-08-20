@@ -79,6 +79,7 @@ public class MemberAction extends ActionSupport implements Preparable, ModelDriv
 
 	}
 
+	/*
 	// 회원가입 완료
 	public String join_result() throws Exception {
 
@@ -91,6 +92,7 @@ public class MemberAction extends ActionSupport implements Preparable, ModelDriv
 		return SUCCESS;
 
 	}
+	*/
 
 	// 로그인
 	public String login() throws Exception {
@@ -113,8 +115,6 @@ public class MemberAction extends ActionSupport implements Preparable, ModelDriv
 		
 		String userId = (String) dao.getReadData("member.login", dto);
 
-		System.out.println("userId : " + userId);
-		
 		// 로그인 실패
 		if (userId == null) {
 			String message = "비밀번호가 일치하지 않습니다.";
@@ -150,25 +150,21 @@ public class MemberAction extends ActionSupport implements Preparable, ModelDriv
 		HttpServletRequest request = ServletActionContext.getRequest();
 		CommonDAO dao = CommonDAOImpl.getInstance();
 
-		String str = request.getParameter("message");
 		String message = "";
+		String mode = request.getParameter("mode");
 		
-		if (str != null) {
-			message = str;
-		}
-
-		// 에러
-		if (dto == null || dto.getMode() == null || dto.getMode().equals("") || message.equals("")) {
-
+		if (dto.getUserTel() == null || dto.getUserTel().equals("")) {
+			
+			return INPUT;
+		
 			// 아이디 찾기
 		} else if (dto.getMode().equals("findId")) {
 
 			String userId = (String) dao.getReadData("member.findId", dto);
-
-			if (userId != null && userId.equals(""))
+			
+			if (userId != null && !userId.equals("")) {
 				message = "아이디는 [" + userId + "] 입니다.";
-
-			else {
+			} else {
 				message = "아이디가 존재하지 않습니다.";
 				request.setAttribute("message", message);
 				return INPUT;
@@ -179,10 +175,9 @@ public class MemberAction extends ActionSupport implements Preparable, ModelDriv
 
 			String userPwd = (String) dao.getReadData("member.findPwd", dto);
 
-			if (userPwd != null && userPwd.equals(""))
+			if (userPwd != null && !userPwd.equals("")) {
 				message = "비밀번호는 [" + userPwd + "] 입니다.";
-
-			else {
+			} else {
 				message = "일치하는 정보가 존재하지 않습니다.";
 				request.setAttribute("message", message);
 				return INPUT;
