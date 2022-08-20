@@ -4,15 +4,15 @@ public class BoardsDTO {
 	
 	private int listNum;
 	
-	private int boardNum;
+	private int boardNum;//글 작성 순번
 	private String userId;
 	private String pwd;
 	private String email;
 	private String subject;
 	private String content;
 	private int groupNum;
-	private int depth;
-	private int orderNum;
+	private int depth;//답글 들여쓰기
+	private int orderNum;//group 내에서의 순번
 	private int parent;
 	private int hitCount;
 	private String postDate;

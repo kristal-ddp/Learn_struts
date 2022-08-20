@@ -219,6 +219,7 @@ public class BoardsAction extends ActionSupport
 		}
 		
 		dto.setUserId(userId);//return INPUT 가기전에 적어줘야 userId가 출력됨
+		//+ 'dto==null' 조건문 위에 써야 DB에 저장됨. if not, 'dto!=null'일때 'dto==null' 조건문을 건너뛰기 때문에 DB에 저장 안됨
 		
 		if(dto==null || dto.getMode()==null || dto.getMode().equals("")) {
 			
@@ -269,6 +270,17 @@ public class BoardsAction extends ActionSupport
 		HttpServletRequest request = ServletActionContext.getRequest();
 		CommonDAO dao = CommonDAOImpl.getInstance();
 		
+		String userId = "";
+		String sessionUserId = (String) request.getSession().getAttribute("userId");
+		
+		if (sessionUserId != null && !sessionUserId.equals("")) {
+			userId = sessionUserId;
+		}else if (sessionUserId == null || sessionUserId.equals("")) {
+			return LOGIN;
+		}
+		
+		dto.setUserId(userId);/*dto.setUserId(userId);*/
+		
 		if(dto==null || dto.getMode()==null || dto.getMode().equals("")) {
 			
 			//부모의 데이터 읽어옴
@@ -280,7 +292,6 @@ public class BoardsAction extends ActionSupport
 			//부모 데이터를 변경해서 답변데이터로 write.jsp에 출력
 			dto.setSubject("[답변]" + dto.getSubject());
 			dto.setContent(dto.getContent() + temp);
-			dto.setUserId("");
 			dto.setEmail("");
 			dto.setPwd("");
 			
