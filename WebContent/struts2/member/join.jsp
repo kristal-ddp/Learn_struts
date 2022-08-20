@@ -15,7 +15,6 @@
 <link rel="stylesheet" type="text/css" href="<%=cp %>/struts2/member/css/member.css" />
 
 <script type="text/javascript">
-
 	function sendIt(){
 		
 		var f = document.myForm;
@@ -69,18 +68,10 @@
 		f.submit();
 		
 	}
-	
-	$(function() {
-		
-		
-		
-		
-		
-		
-	});
 </script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- 주소 API -->
 <script type="text/javascript">
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -147,11 +138,8 @@
 								<label for="userId"><span>ID</span></label>
 							</div>
 							<div class="box input">
-								<input autofocus
-									onKeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'');"
-									type="text" name="userId" class="inputStyle" placeholder="아이디" />
-								<input type="button" value="중복확인" class="inputStyle"
-									onclick="idCheck()" />
+								<input autofocus onKeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'');" type="text" name="userId" class="inputStyle" placeholder="아이디" />
+								<input type="button" value="중복확인" class="inputStyle" onclick="idCheck()" />
 							</div>
 						</div>
 						<!-- PASSWORD -->
@@ -223,8 +211,7 @@
 							<div class="joinLabel" style="height: 80px;">
 								<label style="" for="userAddress"><span>ADDRESS</span></label>
 							</div>
-							<div class="box input"
-								style="margin-top: 10px; margin-bottom: 15px; height: 80px;">
+							<div class="box input" style="margin-top: 10px; margin-bottom: 15px; height: 80px;">
 								<div style="padding-bottom: 8px;">
 									<input maxlength="6" type="text" name="userAddr" id="sample6_postcode" class="input-2" placeholder="우편번호"
 										style="float: left; padding-right: 0; padding-bottom: 10pt; display: block; vertical-align: middle; font-size: 9pt;">
@@ -280,25 +267,16 @@
 			
 			<!-- update -->
 			<c:if test="${mode=='update' }">
-				<button style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 110px; line-height: 48px;"
-					type="button" onclick="javascript:history.back();"
-					onmouseover="this.style.backgroundColor='#F0F0F0';"
-					onmouseout="this.style.backgroundColor='white';">
+				<button style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 110px; line-height: 48px;" type="button"
+					onclick="javascript:history.back();" onmouseover="this.style.backgroundColor='#F0F0F0';" onmouseout="this.style.backgroundColor='white';">
 					<span style="font-size: 8px; color: #484848;">BACK</span>
 				</button>
-				<button
-					style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 110px; line-height: 48px;"
-					type="button" onclick="sendIt();"
-					onmouseover="this.style.backgroundColor='#F0F0F0';"
-					onmouseout="this.style.backgroundColor='white';">
+				<button style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 110px; line-height: 48px;" type="button"
+					onclick="sendIt();" onmouseover="this.style.backgroundColor='#F0F0F0';" onmouseout="this.style.backgroundColor='white';">
 					<span style="font-size: 8px; color: #484848;">완료</span>
 				</button>
-				<button
-					style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 110px; line-height: 48px;"
-					type="button"
-					onclick="javascript:location.href='<%=cp%>/member/withdraw.action';"
-					onmouseover="this.style.backgroundColor='#F0F0F0';"
-					onmouseout="this.style.backgroundColor='white';">
+				<button style="cursor: pointer; border: 1px solid #BDBDBD; background-color: #FFFFFF; width: 110px; line-height: 48px;" type="button"
+					onclick="javascript:location.href='<%=cp%>/member/withdraw.action';" onmouseover="this.style.backgroundColor='#F0F0F0';" onmouseout="this.style.backgroundColor='white';">
 					<span style="font-size: 8px; color: #484848;">회원탈퇴</span>
 				</button>
 			</c:if>

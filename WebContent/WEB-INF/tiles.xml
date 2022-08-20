@@ -10,6 +10,10 @@
 		<put-attribute name="footer" value="/struts2/layout/footer.jsp"/>
 	</definition>
 	
+	<definition name="member.mainLayout" extends="mainLayout">
+		<put-attribute name="body" value="/struts2/member/main.jsp"/>
+	</definition>
+	
 	<definition name="boards.listLayout" extends="mainLayout">
 		<put-attribute name="body" value="/struts2/boards/list.jsp"/>
 	</definition>
