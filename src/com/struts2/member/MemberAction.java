@@ -44,6 +44,11 @@ public class MemberAction extends ActionSupport implements Preparable, ModelDriv
 		}
 	}
 
+	// 메인
+	public String main() throws Exception {
+		return SUCCESS;
+	}
+
 	// 이용약관
 	public String terms() throws Exception {
 

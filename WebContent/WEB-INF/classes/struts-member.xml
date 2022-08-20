@@ -13,6 +13,10 @@
 			<result name="myPage" type="redirectAction">myPage</result>
 		</global-results>
 		
+		<action name="main" class="com.struts2.member.MemberAction" method="main">
+			<result name="success" type="tiles">member.mainLayout</result>
+		</action>
+		
 		<action name="terms" class="com.struts2.member.MemberAction" method="terms">
 			<result name="success" type="tiles">member.termsLayout</result>
 		</action>
